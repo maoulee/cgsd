@@ -1,0 +1,13 @@
+accelerate==1.14.0
+deepspeed==0.19.3
+flash-linear-attention @ git+https://github.com/fla-org/flash-linear-attention.git@7e46dffc0df1d28fe3d94b09b0fdabc7636df009
+flashinfer-cubin==0.6.12
+flashinfer-python==0.6.12
+peft==0.19.1
+sentence-transformers==5.6.1
+sentencepiece==0.2.2
+torch==2.11.0+cu130
+transformers==5.9.0
+transformers-stream-generator==0.0.5
+trl==0.29.1
+vllm==0.24.0

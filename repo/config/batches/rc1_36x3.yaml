@@ -1,0 +1,32 @@
+# RC1（Relation-Coverage V1）对照批 — 照抄 hp_36x3.yaml，仅换 SEQ_PROMPT 与输出名。
+# 与现行默认（C123）对照跑：
+#   scripts/run_batch.py config/batches/rc1_36x3.yaml
+#   scripts/run_batch.py config/batches/hp_36x3.yaml --name hp_c123_36x3_arm   # 同期对照臂
+# 提示语面：kgqa/agent/SEQ_AGENTS_RC1.md（C125 血统，team20 交付 2026-10-14，
+# sha256 b5c1dd48d8a3c44816df980d1954656201a620c3c7af369bd203e5c387e4d097）
+name: rc1_v1_36x3
+desc: hard panel 36 cases x 3 samples, RC1 relation-coverage prompt, V4 render,
+  walk-bridge unification code (2026-10-10, zero new env vars)
+module: kgqa.rl.seq_rollout
+env:
+  SPLIT: test_v4
+  N_CASES: "36"
+  N_SAMPLES: "3"
+  TEMP: "0.3"
+  CASE_BATCH: "1000"
+  CASE_FILTER: tmp/hard_cohort.txt
+  INFLOW_TARGET: "500"
+  LLM_MODE: http
+  PYTHONHASHSEED: "0"
+  SEQ_ADAPTIVE_ROUTES: "1"
+  SEQ_LICENSE_FILTER: "1"
+  SEQ_MULTISTEP: "1"
+  SEQ_PLAN_PATH_HINTS: "1"
+  SEQ_PROMPT: RC1
+  SEQ_RENDER_V38: "1"
+  SEQ_RENDER_V4: "1"
+  WALK_BATCH_WINDOW: "1.0"
+  WALK_POOL: "3"
+out: reports/rc1_v1_36x3.json
+log: logs/rc1_v1_36x3.log
+allow_resume: false

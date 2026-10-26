@@ -1,0 +1,81 @@
+# OPSD 训练配置（scripts/run_swift_opsd.sh 读取；OPSD_* 环境变量可覆盖同名项）
+# GPU 数/TP/NPROC 自动跟随环境可见卡数，不在此配置。
+
+# ---- 模型与数据 ----
+model: models/Qwen3.5-4B
+# 参考解 = 决策摘要（2026-10-25 裁定: 参考价值在关键选择, 非完整行为抄本）。
+# 旧 opsd_kgqa_teacher19.jsonl 的 [step N] tool: 逐字块参考 = 输出格式模板,
+# 已证实是 essay-mode 崩塌主因 → 仅留作 A/B, 不作默认。
+data: ./data/opsd/opsd_pool.jsonl   # 3,200 case × 8 = 100 步 × 32 case（24 CWQ : 8 WebQSP）
+# 快速冒烟/对照（训练环境轨迹精炼, 29 case）:
+# data: ./data/opsd/opsd_trainenv.jsonl
+
+# ---- 训练规模 ----
+steps: 100          # optimizer steps
+acc: 128            # 梯度累积/rank。**数据是"每 case 8 行", 一行 = 1 条 rollout**
+                    # （swift GKD 硬编码 n=1, 不做行内 n 采样）⇒
+                    # 每步轨迹数 = acc × 2 rank × bs1; case 数 = 轨迹数 / 8。
+                    # acc=32 → 64 条(8 case, 并发上限 32)
+                    # acc=64 → 128 条(16 case, 并发 64)
+                    # acc=128 → **256 条(32 case, 并发 128)** ← 目标口径
+bs: 1               # micro-batch。bs=2 与 bs=1/acc×2 数学等价, 但 32k 序列
+                    # 激活翻倍（峰值已 36G/40G）→ 有 OOM 风险且 GPU 已 100%,
+                    # 无提速收益 → 保持 1, 等效批靠 acc 调。
+# ---- LoRA（2026-10-25: rank 64 + LoRA+ 加速收敛）----
+lora_rank: 64
+lora_alpha: 128     # alpha = 2×rank（与原 16/32 同比例）
+lora_plus: 4        # LoRA+: lora_B lr 倍率。×16 时一次更新即把策略打成碎片复读
+                    # （D2 实验 step2 首轮 256/256 全部 'place_place_...'），降到 ×4
+lr: 2.0e-5          # 首跑求稳（此前 5e-5 首更新后 F1 回退）；方向确认后可回 5e-5
+warmup_steps: 5
+save_steps: 10      # 100 步留 10 个检查点
+seed: 42
+
+# ---- 长度 ----
+max_len: 40960      # 用户裁定 2026-10-25: 收到 40k（模型原生 262144）
+                    # （step10 MaxLengthError 32801）。49152 结构性消除该类崩溃：
+                    # encode 上限、vllm max_model_len、守卫、截断全部联动此值。
+                    # 训练显存按 micro-batch(bs8) 计: 8×49k×2560×2B≈2GB hidden，安全。
+completion: 1500    # 单轮预算 = thinking 1000 + action 500（9B 同款）
+
+# ---- GKD/JSD ----
+topk: 256
+# beta=0 → forward KL KL(π_T ‖ π_S)（用户裁定 2026-10-25）: mode-covering,
+# 学生漏掉教师的任何模式都会被罚 → 抗"分布收窄/复读"型崩塌; 之前 0.5 是 JSD。
+beta: 0.0
+# 蒸馏温度: 分块 loss 对 s/t 用同一值；1.0 = 在模型自身分布上算 KL
+# （此前未传, 吃的是 swift 默认 0.9）。rollout 采样温度另有 KGQA_ROLLOUT_TEMP=0.7。
+temperature: 1.0
+
+# ---- vLLM rollout ----
+# KV 账（Qwen3.5-4B 混合注意力: 24 linear + 8 full-attn 层, 4 KV 头 × head_dim 256）:
+#   KV/token = 2×8×4×256×2B = 32KB → 12k-token 轨迹仅 0.37 GiB。
+#   util 0.50 → KV 预算 ~11 GiB 已容纳 ~30 条 12k 并发——并发瓶颈是
+#   max_num_seqs 调度上限而非显存。256 轨迹/step 提到 32:
+#   32×12k ≈ 12 GiB，util 0.60（KV ~15 GiB）留出 32k 长尾余量。
+vllm_util: 0.55     # GTE 常驻 1.6G/卡 + 训练峰值 ~35-40G；0.55 已实测跑通（0.65 偏紧）
+max_num_seqs: 128   # 实际并发 = min(每卡条数, max_num_seqs); acc=128 → 每卡 128 条,
+                    # 128 正好喂满（acc 若回 32/64, 这里要同步降到 32/64, 否则白占
+                    # CUDA graph 显存）。实测吞吐: 16→537, 32→795, 64→1284 tok/s;
+                    # 逐卡峰值: 64 并发 34.0G / 32.3G（40k 上下文, 40G 卡余量 ~6G）。
+                    # 但**峰值显存随并发上涨**（36.6→39.7→41.85 GiB）: vLLM 的 KV
+                    # 池虽在启动时锁死, CUDA graph 捕获与每序列缓冲却随
+                    # max_num_seqs 增长。64 并发已贴/超 40G, 故取 32 稳跑;
+                    # 想上 64 需先用 nvidia-smi 逐卡确认峰值。
+                    # （GTE 是独立进程, 不体现在训练进程的 reserved 计数里;
+                    #  其双层防护只约束它自己, 现已压到 16 条/批。）
+                    # 判据: [tool] 行 walk exec/wait 与 [phase] rollout span——若倒退回 8 即可。
+prefix_caching: 1
+
+# ---- 采样（生产 9B 口径）----
+rollout_temp: 0.7
+rollout_top_p: 0.8
+rollout_top_k: 20
+rollout_presence: 1.5
+
+# ---- OPSD 机制 ----
+thinking_budget: 1500   # 1000 时 step5 有 37% 的轮触发预算注入（注入串被当成标签学走），提到 1500
+dyn_mode: mask      # 案级 mask + 超长截断（用户裁定）；duplicate 为旧对照
+teacher_prefix: system
+chunked_loss: 1     # LM head 前分块（256×32k 的显存前提）
+loss_chunk: 512

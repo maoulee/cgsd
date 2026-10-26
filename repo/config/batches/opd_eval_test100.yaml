@@ -1,0 +1,28 @@
+# OPD 迭代步进批 — case 集由 tmp/opd_test_filter.txt 每步轮转
+name: opd_eval_test100
+desc: one OPD iteration step (filter file written by slurm driver)
+module: kgqa.rl.seq_rollout
+env:
+  SPLIT: test_v4
+  N_CASES: "100"
+  N_SAMPLES: "8"
+  TEMP: "0.3"
+  CASE_BATCH: "1000"
+  INFLOW_TARGET: "500"
+  LLM_MODE: http
+  # 2026-10-20: 缺这行 → run_batch 以默认 Qwen3.5-9B 调只挂 student
+  # 别名的相位服务 → 404 风暴, final eval 从未成功过 (含 10-17 exit=1)
+  KGQA_MODEL_NAME: student
+  PYTHONHASHSEED: "0"
+  SEQ_ADAPTIVE_ROUTES: "1"
+  SEQ_LICENSE_FILTER: "1"
+  SEQ_MULTISTEP: "1"
+  SEQ_PLAN_PATH_HINTS: "1"
+  SEQ_PROMPT: RC1
+  SEQ_RENDER_V38: "1"
+  SEQ_RENDER_V4: "1"
+  WALK_BATCH_WINDOW: "1.0"
+  WALK_POOL: "3"
+out: reports/{name}.json
+log: logs/{name}.log
+allow_resume: false
