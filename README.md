@@ -63,13 +63,71 @@ Base models (download to `models/`, or point env vars at your copies):
 
 ## 4. Data
 
-This revision ships the **code**; the processed benchmark pkls (CWQ train/test,
-WebQSP train/test, schemas below) are added in a follow-up commit — restore
-commands and volume layout will appear here then. Included now:
+The processed pkls are **reconstructed from public sources** — three steps,
+~1–3 h end to end (dominated by the Virtuoso download). Included in the repo:
 
+- `data/cwq_sparql/test.json` (3.0M), `data/cwq_sparql_full/train.json` (21M),
+  `data/webqsp/WebQSP.test.json` (5.9M), `data/webqsp/WebQSP.train.sparql.json`
+  — gold SPARQL per question (drives the repair step);
 - `data/opsd/opsd_pool.sample16.jsonl.gz` — pre-built training-pool sample
   (16 cases × 8 rows) for the §6 smoke test (`gunzip -k` it first);
 - `data/cwq_processed/mask_wrong_type_ids.json` — evaluation mask list.
+
+### 4.1 Start a Freebase Virtuoso endpoint
+
+```bash
+bash scripts/setup_freebase_virtuoso.sh download ~/virtuoso_db
+export VIRTUOSO_ENDPOINT=http://localhost:3001/sparql
+```
+
+The dump is the processed Freebase Virtuoso DB from
+[ChatKBQA](https://github.com/LHRLAB/ChatKBQA) (53G+ disk, ≥100GB RAM
+recommended; Dropbox / Baidu links in their README; any complete Freebase
+Virtuoso endpoint works). Warm-up after start can take 5–20 min.
+
+### 4.2 Fetch the RoG subgraph parquet and convert
+
+```bash
+pip install pyarrow
+# CWQ  -> https://huggingface.co/datasets/rmanluo/RoG-cwq
+huggingface-cli download rmanluo/RoG-cwq --repo-type dataset \
+  --local-dir data/rog_cwq_raw
+# WebQSP -> https://huggingface.co/datasets/ml1996/webqsp
+huggingface-cli download ml1996/webqsp --repo-type dataset \
+  --local-dir data/ml1996_webqsp_raw
+
+python scripts/convert_rog_to_pkl.py --dataset cwq    --split test
+python scripts/convert_rog_to_pkl.py --dataset cwq    --split train
+python scripts/convert_rog_to_pkl.py --dataset webqsp --split test
+python scripts/convert_rog_to_pkl.py --dataset webqsp --split train
+# -> data/{cwq_processed,webqsp}/{test,train}_rog.pkl
+```
+
+### 4.3 Repair: materialize gold answer paths via Virtuoso
+
+The k-hop subgraphs miss ~21–54% of gold edges (CVT-mediated relations); the
+repair rewrites each gold SPARQL to `SELECT *`, executes it against Virtuoso
+and merges the materialized gold triples into the pkl:
+
+```bash
+python scripts/repair_subgraph_virtuoso.py --dataset cwq_test_from_rog
+python scripts/repair_subgraph_virtuoso.py --dataset cwq_train_from_rog
+python scripts/repair_subgraph_virtuoso.py --dataset webqsp_test_from_rog
+python scripts/repair_subgraph_virtuoso.py --dataset webqsp_train_from_rog
+# -> data/{cwq_processed,webqsp}/*_virt_r2.pkl  (the pipeline input)
+# smoke first:  --limit 5 --verbose
+```
+
+Then §5.1 optionally rebuilds the full training pool from these pkls.
+
+**Provenance note.** Our internal base pkls went through one extra
+fix lineage (literal/language fixes + path completion) before the same repair;
+the RoG-HF parquet is an equivalent re-extraction of the same neighborhoods
+(same questions/answers; ~4.2K triples/case; ~65% triple-level overlap with
+our snapshots due to BFS sampling variation). Reconstructed data is
+equivalent by construction but not byte-identical — expect small metric
+variation when reproducing. The exact pkls we report numbers on are available
+from the authors on request.
 
 **Pkl row schema** (identical across CWQ/WebQSP): `id, question, q_entity,
 q_entity_id_list, text_entity_list, non_text_entity_list, relation_list,
