@@ -1,0 +1,5129 @@
+[
+ {
+  "case_id": "WebQTrn-2209_c1374f388d9cc7a78365860c91218362",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "1957 NBA Finals",
+   "1959 NBA Finals",
+   "1960 NBA Finals",
+   "1961 NBA Finals",
+   "1962 NBA Finals",
+   "1963 NBA Finals",
+   "1964 NBA Finals",
+   "1965 NBA Finals",
+   "1966 NBA Finals",
+   "1968 NBA Finals",
+   "1969 NBA Finals",
+   "1974 NBA Finals",
+   "1976 NBA Finals",
+   "1981 NBA Finals",
+   "1984 NBA Finals",
+   "1986 NBA Finals",
+   "2008 NBA Finals"
+  ],
+  "p0_vec": [
+   0.037,
+   0.037,
+   0.04,
+   0.036,
+   0.035,
+   0.037,
+   0.038,
+   0.039,
+   0.041,
+   0.041,
+   0.044,
+   0.041,
+   0.044,
+   0.046,
+   0.053,
+   0.052,
+   0.14
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.383,
+     0.193,
+     0.218,
+     0.31,
+     0.183,
+     0.167,
+     0.203,
+     0.198,
+     0.216,
+     0.27,
+     0.235,
+     0.228,
+     0.252,
+     0.282,
+     0.35,
+     0.449,
+     0.704
+    ],
+    "gain_vec_max": 0.564
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "2008 NBA Finals",
+      0.132
+     ]
+    ],
+    "max_delta": 0.132
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "1957 NBA Finals",
+      0.339
+     ],
+     [
+      "1959 NBA Finals",
+      0.156
+     ],
+     [
+      "1960 NBA Finals",
+      0.182
+     ],
+     [
+      "1961 NBA Finals",
+      0.276
+     ],
+     [
+      "1962 NBA Finals",
+      0.149
+     ],
+     [
+      "1963 NBA Finals",
+      0.135
+     ],
+     [
+      "1964 NBA Finals",
+      0.17
+     ],
+     [
+      "1965 NBA Finals",
+      0.167
+     ],
+     [
+      "1966 NBA Finals",
+      0.181
+     ],
+     [
+      "1968 NBA Finals",
+      0.235
+     ],
+     [
+      "1969 NBA Finals",
+      0.201
+     ],
+     [
+      "1974 NBA Finals",
+      0.192
+     ],
+     [
+      "1976 NBA Finals",
+      0.214
+     ],
+     [
+      "1981 NBA Finals",
+      0.245
+     ],
+     [
+      "1984 NBA Finals",
+      0.305
+     ],
+     [
+      "1986 NBA Finals",
+      0.404
+     ],
+     [
+      "2008 NBA Finals",
+      0.624
+     ]
+    ],
+    "max_delta": 0.624
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2209_c1374f388d9cc7a78365860c91218362",
+  "sample": 1,
+  "f1": 0.111,
+  "golds": [
+   "1957 NBA Finals",
+   "1959 NBA Finals",
+   "1960 NBA Finals",
+   "1961 NBA Finals",
+   "1962 NBA Finals",
+   "1963 NBA Finals",
+   "1964 NBA Finals",
+   "1965 NBA Finals",
+   "1966 NBA Finals",
+   "1968 NBA Finals",
+   "1969 NBA Finals",
+   "1974 NBA Finals",
+   "1976 NBA Finals",
+   "1981 NBA Finals",
+   "1984 NBA Finals",
+   "1986 NBA Finals",
+   "2008 NBA Finals"
+  ],
+  "p0_vec": [
+   0.038,
+   0.036,
+   0.04,
+   0.036,
+   0.035,
+   0.037,
+   0.038,
+   0.039,
+   0.042,
+   0.041,
+   0.042,
+   0.041,
+   0.044,
+   0.046,
+   0.053,
+   0.053,
+   0.138
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.468,
+     0.261,
+     0.237,
+     0.312,
+     0.181,
+     0.169,
+     0.213,
+     0.199,
+     0.249,
+     0.267,
+     0.254,
+     0.221,
+     0.243,
+     0.343,
+     0.36,
+     0.421,
+     0.675
+    ],
+    "gain_vec_max": 0.536
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "2008 NBA Finals",
+      0.09
+     ]
+    ],
+    "max_delta": 0.09
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "1957 NBA Finals",
+      0.426
+     ],
+     [
+      "1959 NBA Finals",
+      0.217
+     ],
+     [
+      "1960 NBA Finals",
+      0.203
+     ],
+     [
+      "1961 NBA Finals",
+      0.275
+     ],
+     [
+      "1962 NBA Finals",
+      0.145
+     ],
+     [
+      "1963 NBA Finals",
+      0.132
+     ],
+     [
+      "1964 NBA Finals",
+      0.178
+     ],
+     [
+      "1965 NBA Finals",
+      0.162
+     ],
+     [
+      "1966 NBA Finals",
+      0.201
+     ],
+     [
+      "1968 NBA Finals",
+      0.228
+     ],
+     [
+      "1969 NBA Finals",
+      0.211
+     ],
+     [
+      "1974 NBA Finals",
+      0.183
+     ],
+     [
+      "1976 NBA Finals",
+      0.198
+     ],
+     [
+      "1981 NBA Finals",
+      0.303
+     ],
+     [
+      "1984 NBA Finals",
+      0.312
+     ],
+     [
+      "1986 NBA Finals",
+      0.372
+     ],
+     [
+      "2008 NBA Finals",
+      0.575
+     ]
+    ],
+    "max_delta": 0.575
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2209_c1374f388d9cc7a78365860c91218362",
+  "sample": 2,
+  "f1": 0.111,
+  "golds": [
+   "1957 NBA Finals",
+   "1959 NBA Finals",
+   "1960 NBA Finals",
+   "1961 NBA Finals",
+   "1962 NBA Finals",
+   "1963 NBA Finals",
+   "1964 NBA Finals",
+   "1965 NBA Finals",
+   "1966 NBA Finals",
+   "1968 NBA Finals",
+   "1969 NBA Finals",
+   "1974 NBA Finals",
+   "1976 NBA Finals",
+   "1981 NBA Finals",
+   "1984 NBA Finals",
+   "1986 NBA Finals",
+   "2008 NBA Finals"
+  ],
+  "p0_vec": [
+   0.037,
+   0.036,
+   0.04,
+   0.036,
+   0.035,
+   0.037,
+   0.038,
+   0.039,
+   0.042,
+   0.041,
+   0.043,
+   0.041,
+   0.044,
+   0.046,
+   0.053,
+   0.052,
+   0.14
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.469,
+     0.261,
+     0.238,
+     0.312,
+     0.187,
+     0.174,
+     0.215,
+     0.199,
+     0.249,
+     0.279,
+     0.256,
+     0.221,
+     0.247,
+     0.343,
+     0.355,
+     0.421,
+     0.677
+    ],
+    "gain_vec_max": 0.538
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "2008 NBA Finals",
+      0.08
+     ]
+    ],
+    "max_delta": 0.08
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "1957 NBA Finals",
+      0.426
+     ],
+     [
+      "1959 NBA Finals",
+      0.218
+     ],
+     [
+      "1960 NBA Finals",
+      0.202
+     ],
+     [
+      "1961 NBA Finals",
+      0.277
+     ],
+     [
+      "1962 NBA Finals",
+      0.15
+     ],
+     [
+      "1963 NBA Finals",
+      0.137
+     ],
+     [
+      "1964 NBA Finals",
+      0.18
+     ],
+     [
+      "1965 NBA Finals",
+      0.164
+     ],
+     [
+      "1966 NBA Finals",
+      0.201
+     ],
+     [
+      "1968 NBA Finals",
+      0.238
+     ],
+     [
+      "1969 NBA Finals",
+      0.213
+     ],
+     [
+      "1974 NBA Finals",
+      0.183
+     ],
+     [
+      "1976 NBA Finals",
+      0.202
+     ],
+     [
+      "1981 NBA Finals",
+      0.303
+     ],
+     [
+      "1984 NBA Finals",
+      0.307
+     ],
+     [
+      "1986 NBA Finals",
+      0.372
+     ],
+     [
+      "2008 NBA Finals",
+      0.571
+     ]
+    ],
+    "max_delta": 0.571
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3136_a2debf685e0c50491e35a9cf7a1e9ade",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Northern Ireland"
+  ],
+  "p0_vec": [
+   0.065
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.748
+    ],
+    "gain_vec_max": 0.683
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Northern Ireland",
+      0.683
+     ]
+    ],
+    "max_delta": 0.683
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3136_a2debf685e0c50491e35a9cf7a1e9ade",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Northern Ireland"
+  ],
+  "p0_vec": [
+   0.065
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.771
+    ],
+    "gain_vec_max": 0.707
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 3,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Northern Ireland",
+      0.707
+     ]
+    ],
+    "max_delta": 0.707
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3136_a2debf685e0c50491e35a9cf7a1e9ade",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Northern Ireland"
+  ],
+  "p0_vec": [
+   0.065
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.799
+    ],
+    "gain_vec_max": 0.734
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Northern Ireland",
+      0.734
+     ]
+    ],
+    "max_delta": 0.734
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1923_2d077323191d349225d8f3719925c777",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Big Fish",
+   "Bolt",
+   "Family Bond",
+   "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+   "Hannah Montana: The Movie",
+   "High School Musical 2",
+   "LOL",
+   "Miley Cyrus: Tongue Tied",
+   "Radio Disney Party Jams: The Concert",
+   "Rock Mafia Presents: The Big Bang",
+   "Sex and the City 2",
+   "So Undercover",
+   "Sonic the Hedgehog",
+   "Super Rhino",
+   "The Last Song",
+   "The World According to Miley Cyrus",
+   "Wizards on Deck with Hannah Montana"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.0,
+   0.173,
+   0.119,
+   0.077,
+   0.0,
+   0.016,
+   0.003,
+   0.004,
+   0.087,
+   0.0,
+   0.06,
+   0.0,
+   0.003,
+   0.02,
+   0.006
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.002,
+     0.0,
+     0.003,
+     0.473,
+     0.332,
+     0.122,
+     0.0,
+     0.281,
+     0.137,
+     0.172,
+     0.079,
+     0.019,
+     0.03,
+     0.003,
+     0.002,
+     0.142,
+     0.176
+    ],
+    "gain_vec_max": 0.299
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.011
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+      0.333
+     ],
+     [
+      "Hannah Montana: The Movie",
+      0.28
+     ],
+     [
+      "High School Musical 2",
+      0.07
+     ],
+     [
+      "Miley Cyrus: Tongue Tied",
+      0.234
+     ],
+     [
+      "Radio Disney Party Jams: The Concert",
+      0.135
+     ],
+     [
+      "Rock Mafia Presents: The Big Bang",
+      0.169
+     ],
+     [
+      "The World According to Miley Cyrus",
+      0.112
+     ],
+     [
+      "Wizards on Deck with Hannah Montana",
+      0.173
+     ]
+    ],
+    "max_delta": 0.333
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1923_2d077323191d349225d8f3719925c777",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Big Fish",
+   "Bolt",
+   "Family Bond",
+   "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+   "Hannah Montana: The Movie",
+   "High School Musical 2",
+   "LOL",
+   "Miley Cyrus: Tongue Tied",
+   "Radio Disney Party Jams: The Concert",
+   "Rock Mafia Presents: The Big Bang",
+   "Sex and the City 2",
+   "So Undercover",
+   "Sonic the Hedgehog",
+   "Super Rhino",
+   "The Last Song",
+   "The World According to Miley Cyrus",
+   "Wizards on Deck with Hannah Montana"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.0,
+   0.173,
+   0.119,
+   0.077,
+   0.0,
+   0.016,
+   0.003,
+   0.004,
+   0.087,
+   0.0,
+   0.06,
+   0.0,
+   0.003,
+   0.02,
+   0.006
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.002,
+     0.0,
+     0.004,
+     0.498,
+     0.356,
+     0.108,
+     0.0,
+     0.309,
+     0.147,
+     0.178,
+     0.087,
+     0.019,
+     0.03,
+     0.003,
+     0.003,
+     0.137,
+     0.27
+    ],
+    "gain_vec_max": 0.325
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.007
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+      0.373
+     ],
+     [
+      "Hannah Montana: The Movie",
+      0.308
+     ],
+     [
+      "High School Musical 2",
+      0.051
+     ],
+     [
+      "Miley Cyrus: Tongue Tied",
+      0.262
+     ],
+     [
+      "Radio Disney Party Jams: The Concert",
+      0.145
+     ],
+     [
+      "Rock Mafia Presents: The Big Bang",
+      0.175
+     ],
+     [
+      "The World According to Miley Cyrus",
+      0.112
+     ],
+     [
+      "Wizards on Deck with Hannah Montana",
+      0.268
+     ]
+    ],
+    "max_delta": 0.373
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1923_2d077323191d349225d8f3719925c777",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Big Fish",
+   "Bolt",
+   "Family Bond",
+   "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+   "Hannah Montana: The Movie",
+   "High School Musical 2",
+   "LOL",
+   "Miley Cyrus: Tongue Tied",
+   "Radio Disney Party Jams: The Concert",
+   "Rock Mafia Presents: The Big Bang",
+   "Sex and the City 2",
+   "So Undercover",
+   "Sonic the Hedgehog",
+   "Super Rhino",
+   "The Last Song",
+   "The World According to Miley Cyrus",
+   "Wizards on Deck with Hannah Montana"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.0,
+   0.173,
+   0.119,
+   0.077,
+   0.0,
+   0.016,
+   0.003,
+   0.004,
+   0.087,
+   0.0,
+   0.06,
+   0.0,
+   0.003,
+   0.02,
+   0.006
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.002,
+     0.0,
+     0.003,
+     0.461,
+     0.307,
+     0.112,
+     0.0,
+     0.264,
+     0.137,
+     0.176,
+     0.079,
+     0.017,
+     0.029,
+     0.003,
+     0.002,
+     0.138,
+     0.161
+    ],
+    "gain_vec_max": 0.287
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.005
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Hannah Montana and Miley Cyrus: Best of Both Worlds Concert",
+      0.322
+     ],
+     [
+      "Hannah Montana: The Movie",
+      0.257
+     ],
+     [
+      "High School Musical 2",
+      0.06
+     ],
+     [
+      "Miley Cyrus: Tongue Tied",
+      0.216
+     ],
+     [
+      "Radio Disney Party Jams: The Concert",
+      0.135
+     ],
+     [
+      "Rock Mafia Presents: The Big Bang",
+      0.173
+     ],
+     [
+      "The World According to Miley Cyrus",
+      0.106
+     ],
+     [
+      "Wizards on Deck with Hannah Montana",
+      0.158
+     ]
+    ],
+    "max_delta": 0.322
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-493_471b83eade9707a4dba68e201bf29d73",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-493_471b83eade9707a4dba68e201bf29d73",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Europe"
+  ],
+  "p0_vec": [
+   0.01
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.011
+    ],
+    "gain_vec_max": 0.0
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Europe",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-493_471b83eade9707a4dba68e201bf29d73",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Europe"
+  ],
+  "p0_vec": [
+   0.01
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.001
+    ],
+    "gain_vec_max": -0.009
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.13
+    ],
+    "gain_vec_max": 0.12
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Europe",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.038
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Europe",
+      0.12
+     ]
+    ],
+    "max_delta": 0.12
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2576_872253e47dd6ddaa213ff31eeda8783b",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2576_872253e47dd6ddaa213ff31eeda8783b",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2576_872253e47dd6ddaa213ff31eeda8783b",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2316_b8e16d5f4985c5ab2a3c75e7bc8c9e1a",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Pablo Picasso"
+  ],
+  "p0_vec": [
+   0.01
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.443
+    ],
+    "gain_vec_max": 0.433
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.112
+    ],
+    "gain_vec_max": 0.102
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      0.433
+     ]
+    ],
+    "max_delta": 0.433
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      0.102
+     ]
+    ],
+    "max_delta": 0.102
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2316_b8e16d5f4985c5ab2a3c75e7bc8c9e1a",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Pablo Picasso"
+  ],
+  "p0_vec": [
+   0.01
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.562
+    ],
+    "gain_vec_max": 0.552
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.158
+    ],
+    "gain_vec_max": 0.148
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      0.552
+     ]
+    ],
+    "max_delta": 0.552
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      0.148
+     ]
+    ],
+    "max_delta": 0.148
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2316_b8e16d5f4985c5ab2a3c75e7bc8c9e1a",
+  "sample": 2,
+  "f1": 0.667,
+  "golds": [
+   "Pablo Picasso"
+  ],
+  "p0_vec": [
+   0.01
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.562
+    ],
+    "gain_vec_max": 0.552
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.016
+    ],
+    "gain_vec_max": 0.006
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      0.552
+     ]
+    ],
+    "max_delta": 0.552
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Pablo Picasso",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1731_4eea981607dbe17b040580ce4cd93ec4",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Bass guitar",
+   "Vocals"
+  ],
+  "p0_vec": [
+   0.004,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.405,
+     0.239
+    ],
+    "gain_vec_max": 0.401
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Bass guitar",
+      0.402
+     ],
+     [
+      "Vocals",
+      0.237
+     ]
+    ],
+    "max_delta": 0.402
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1731_4eea981607dbe17b040580ce4cd93ec4",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Bass guitar",
+   "Vocals"
+  ],
+  "p0_vec": [
+   0.004,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.272,
+     0.22
+    ],
+    "gain_vec_max": 0.268
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.273,
+     0.019
+    ],
+    "gain_vec_max": 0.269
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Bass guitar",
+      0.268
+     ],
+     [
+      "Vocals",
+      0.218
+     ]
+    ],
+    "max_delta": 0.268
+   },
+   {
+    "idx": 11,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.027
+   },
+   {
+    "idx": 13,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Bass guitar",
+      0.272
+     ]
+    ],
+    "max_delta": 0.272
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1731_4eea981607dbe17b040580ce4cd93ec4",
+  "sample": 2,
+  "f1": 0.667,
+  "golds": [
+   "Bass guitar",
+   "Vocals"
+  ],
+  "p0_vec": [
+   0.003,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.398,
+     0.057
+    ],
+    "gain_vec_max": 0.395
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Bass guitar",
+      0.395
+     ],
+     [
+      "Vocals",
+      0.055
+     ]
+    ],
+    "max_delta": 0.395
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3084_026bed85b8f8e93ed381fc00a5f8a824",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3084_026bed85b8f8e93ed381fc00a5f8a824",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-3084_026bed85b8f8e93ed381fc00a5f8a824",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1392_6fb4733f48e98e385b85d625ad84354f",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "The New School"
+  ],
+  "p0_vec": [
+   0.04
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.884
+    ],
+    "gain_vec_max": 0.844
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.048
+     ]
+    ],
+    "max_delta": 0.048
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.132
+     ]
+    ],
+    "max_delta": 0.132
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1392_6fb4733f48e98e385b85d625ad84354f",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "The New School"
+  ],
+  "p0_vec": [
+   0.04
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.893
+    ],
+    "gain_vec_max": 0.853
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.059
+     ]
+    ],
+    "max_delta": 0.059
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.238
+     ]
+    ],
+    "max_delta": 0.238
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1392_6fb4733f48e98e385b85d625ad84354f",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "The New School"
+  ],
+  "p0_vec": [
+   0.04
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.89
+    ],
+    "gain_vec_max": 0.85
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.074
+     ]
+    ],
+    "max_delta": 0.074
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The New School",
+      0.227
+     ]
+    ],
+    "max_delta": 0.227
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_df97b91c1a9dfe15bdad689feb59f791",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_df97b91c1a9dfe15bdad689feb59f791",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_df97b91c1a9dfe15bdad689feb59f791",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Village of the Giants"
+  ],
+  "p0_vec": [
+   0.011
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.681
+    ],
+    "gain_vec_max": 0.67
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.007
+    ],
+    "gain_vec_max": -0.004
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Village of the Giants",
+      0.67
+     ]
+    ],
+    "max_delta": 0.67
+   },
+   {
+    "idx": 7,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.004
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-212_01600f3a537521fc645c5891772d0e75",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Arizona",
+   "Colorado",
+   "Nevada"
+  ],
+  "p0_vec": [
+   0.099,
+   0.004,
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.075,
+     0.393,
+     0.035
+    ],
+    "gain_vec_max": 0.389
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Colorado",
+      0.07
+     ]
+    ],
+    "max_delta": 0.07
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Colorado",
+      0.347
+     ]
+    ],
+    "max_delta": 0.347
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-212_01600f3a537521fc645c5891772d0e75",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Arizona",
+   "Colorado",
+   "Nevada"
+  ],
+  "p0_vec": [
+   0.098,
+   0.004,
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.098,
+     0.386,
+     0.036
+    ],
+    "gain_vec_max": 0.381
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Colorado",
+      0.106
+     ]
+    ],
+    "max_delta": 0.106
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Colorado",
+      0.345
+     ]
+    ],
+    "max_delta": 0.345
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-212_01600f3a537521fc645c5891772d0e75",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Arizona",
+   "Colorado",
+   "Nevada"
+  ],
+  "p0_vec": [
+   0.099,
+   0.004,
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.103,
+     0.387,
+     0.021
+    ],
+    "gain_vec_max": 0.383
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Arizona",
+      0.052
+     ]
+    ],
+    "max_delta": 0.052
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Colorado",
+      0.379
+     ]
+    ],
+    "max_delta": 0.379
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2152_52aec0171d93064e46b6e747d8d82010",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2152_52aec0171d93064e46b6e747d8d82010",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 7,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2152_52aec0171d93064e46b6e747d8d82010",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-124_6655b5377537a5db12604d5fc81260a4",
+  "sample": 0,
+  "f1": 0.667,
+  "golds": [
+   "In the Land of Blood and Honey",
+   "Unbroken"
+  ],
+  "p0_vec": [
+   0.111,
+   0.048
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.782,
+     0.261
+    ],
+    "gain_vec_max": 0.671
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.037,
+     0.0
+    ],
+    "gain_vec_max": -0.048
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "In the Land of Blood and Honey",
+      0.671
+     ],
+     [
+      "Unbroken",
+      0.213
+     ]
+    ],
+    "max_delta": 0.671
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.048
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-124_6655b5377537a5db12604d5fc81260a4",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-124_6655b5377537a5db12604d5fc81260a4",
+  "sample": 2,
+  "f1": 0.667,
+  "golds": [
+   "In the Land of Blood and Honey",
+   "Unbroken"
+  ],
+  "p0_vec": [
+   0.111,
+   0.048
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.742,
+     0.354
+    ],
+    "gain_vec_max": 0.631
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.037,
+     0.0
+    ],
+    "gain_vec_max": -0.048
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "In the Land of Blood and Honey",
+      0.631
+     ],
+     [
+      "Unbroken",
+      0.306
+     ]
+    ],
+    "max_delta": 0.631
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.048
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_b64250ae3c9d6c724133d09dad5593ec",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Poetic Justice"
+  ],
+  "p0_vec": [
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.515
+    ],
+    "gain_vec_max": 0.48
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.802
+    ],
+    "gain_vec_max": 0.767
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.48
+     ]
+    ],
+    "max_delta": 0.48
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.767
+     ]
+    ],
+    "max_delta": 0.767
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_b64250ae3c9d6c724133d09dad5593ec",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Poetic Justice"
+  ],
+  "p0_vec": [
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.77
+    ],
+    "gain_vec_max": 0.734
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.646
+    ],
+    "gain_vec_max": 0.61
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.734
+     ]
+    ],
+    "max_delta": 0.734
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.61
+     ]
+    ],
+    "max_delta": 0.61
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_b64250ae3c9d6c724133d09dad5593ec",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Poetic Justice"
+  ],
+  "p0_vec": [
+   0.036
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.77
+    ],
+    "gain_vec_max": 0.734
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.802
+    ],
+    "gain_vec_max": 0.767
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.734
+     ]
+    ],
+    "max_delta": 0.734
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Poetic Justice",
+      0.767
+     ]
+    ],
+    "max_delta": 0.767
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1379_255da87c2560e4248091e82a1c0686c5",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Priest"
+  ],
+  "p0_vec": [
+   0.0
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.037
+    ],
+    "gain_vec_max": 0.037
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Priest",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1379_255da87c2560e4248091e82a1c0686c5",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1379_255da87c2560e4248091e82a1c0686c5",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Priest"
+  ],
+  "p0_vec": [
+   0.0
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.018
+    ],
+    "gain_vec_max": 0.018
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Priest",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   },
+   {
+    "idx": 7,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.017
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1557_a4800ceab3187ab0a2b36a0aec2c1dfa",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "McGill University Faculty of Medicine"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.623
+    ],
+    "gain_vec_max": 0.605
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.071
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "McGill University Faculty of Medicine",
+      0.063
+     ]
+    ],
+    "max_delta": 0.063
+   },
+   {
+    "idx": 11,
+    "verdict": "可移除-环境重复(判死)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1557_a4800ceab3187ab0a2b36a0aec2c1dfa",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "McGill University Faculty of Medicine"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.762
+    ],
+    "gain_vec_max": 0.743
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "McGill University Faculty of Medicine",
+      0.18
+     ]
+    ],
+    "max_delta": 0.18
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "McGill University Faculty of Medicine",
+      0.25
+     ]
+    ],
+    "max_delta": 0.25
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1557_a4800ceab3187ab0a2b36a0aec2c1dfa",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "McGill University Faculty of Medicine"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.778
+    ],
+    "gain_vec_max": 0.76
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "McGill University Faculty of Medicine",
+      0.107
+     ]
+    ],
+    "max_delta": 0.107
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "McGill University Faculty of Medicine",
+      0.205
+     ]
+    ],
+    "max_delta": 0.205
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2540_1af583970c492fc3682ae363bbfca3d3",
+  "sample": 0,
+  "f1": 0.8,
+  "golds": [
+   "Camille Pissarro",
+   "Pierre-Auguste Renoir"
+  ],
+  "p0_vec": [
+   0.257,
+   0.227
+  ],
+  "pathways": [
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.58,
+     0.219
+    ],
+    "gain_vec_max": 0.324
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Camille Pissarro",
+      0.324
+     ]
+    ],
+    "max_delta": 0.324
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2540_1af583970c492fc3682ae363bbfca3d3",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Camille Pissarro",
+   "Pierre-Auguste Renoir"
+  ],
+  "p0_vec": [
+   0.257,
+   0.227
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.605,
+     0.221
+    ],
+    "gain_vec_max": 0.348
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Camille Pissarro",
+      0.348
+     ]
+    ],
+    "max_delta": 0.348
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2540_1af583970c492fc3682ae363bbfca3d3",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Camille Pissarro",
+   "Pierre-Auguste Renoir"
+  ],
+  "p0_vec": [
+   0.257,
+   0.227
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.578,
+     0.202
+    ],
+    "gain_vec_max": 0.321
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Camille Pissarro",
+      0.321
+     ]
+    ],
+    "max_delta": 0.321
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2319_cdbcc6b35919272e53e514bfd6285ea8",
+  "sample": 0,
+  "f1": 0.25,
+  "golds": [
+   "Albanian language",
+   "Hungarian language",
+   "Moldovan language",
+   "Romanian Language",
+   "Russian Language",
+   "Tatar Language",
+   "Ukrainian Language"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.417,
+     0.033,
+     0.026,
+     0.063,
+     0.032,
+     0.027,
+     0.467
+    ],
+    "gain_vec_max": 0.465
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Albanian language",
+      0.052
+     ],
+     [
+      "Ukrainian Language",
+      0.056
+     ]
+    ],
+    "max_delta": 0.056
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Albanian language",
+      0.414
+     ],
+     [
+      "Romanian Language",
+      0.063
+     ],
+     [
+      "Ukrainian Language",
+      0.461
+     ]
+    ],
+    "max_delta": 0.461
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2319_cdbcc6b35919272e53e514bfd6285ea8",
+  "sample": 1,
+  "f1": 0.25,
+  "golds": [
+   "Albanian language",
+   "Hungarian language",
+   "Moldovan language",
+   "Romanian Language",
+   "Russian Language",
+   "Tatar Language",
+   "Ukrainian Language"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.248,
+     0.123,
+     0.033,
+     0.063,
+     0.043,
+     0.029,
+     0.462
+    ],
+    "gain_vec_max": 0.46
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Ukrainian Language",
+      0.069
+     ]
+    ],
+    "max_delta": 0.069
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Albanian language",
+      0.217
+     ],
+     [
+      "Romanian Language",
+      0.062
+     ],
+     [
+      "Ukrainian Language",
+      0.451
+     ]
+    ],
+    "max_delta": 0.451
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Hungarian language",
+      0.09
+     ]
+    ],
+    "max_delta": 0.09
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2319_cdbcc6b35919272e53e514bfd6285ea8",
+  "sample": 2,
+  "f1": 0.25,
+  "golds": [
+   "Albanian language",
+   "Hungarian language",
+   "Moldovan language",
+   "Romanian Language",
+   "Russian Language",
+   "Tatar Language",
+   "Ukrainian Language"
+  ],
+  "p0_vec": [
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.001,
+   0.0,
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.416,
+     0.033,
+     0.027,
+     0.065,
+     0.032,
+     0.027,
+     0.473
+    ],
+    "gain_vec_max": 0.471
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Albanian language",
+      0.051
+     ],
+     [
+      "Ukrainian Language",
+      0.062
+     ]
+    ],
+    "max_delta": 0.062
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Albanian language",
+      0.413
+     ],
+     [
+      "Romanian Language",
+      0.064
+     ],
+     [
+      "Ukrainian Language",
+      0.467
+     ]
+    ],
+    "max_delta": 0.467
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-537_80c32b072f27820081c103131c1e58c4",
+  "sample": 0,
+  "f1": 0.8,
+  "golds": [
+   "Children of Men",
+   "Green Street",
+   "The Ledge"
+  ],
+  "p0_vec": [
+   0.011,
+   0.002,
+   0.005
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.613,
+     0.194,
+     0.02
+    ],
+    "gain_vec_max": 0.602
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Children of Men",
+      0.114
+     ]
+    ],
+    "max_delta": 0.114
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Children of Men",
+      0.417
+     ],
+     [
+      "Green Street",
+      0.164
+     ]
+    ],
+    "max_delta": 0.417
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-537_80c32b072f27820081c103131c1e58c4",
+  "sample": 1,
+  "f1": 0.8,
+  "golds": [
+   "Children of Men",
+   "Green Street",
+   "The Ledge"
+  ],
+  "p0_vec": [
+   0.011,
+   0.002,
+   0.005
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.479,
+     0.372,
+     0.277
+    ],
+    "gain_vec_max": 0.468
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Green Street",
+      0.128
+     ]
+    ],
+    "max_delta": 0.128
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Children of Men",
+      0.222
+     ],
+     [
+      "Green Street",
+      0.285
+     ],
+     [
+      "The Ledge",
+      0.17
+     ]
+    ],
+    "max_delta": 0.285
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-537_80c32b072f27820081c103131c1e58c4",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1840_3d474acada1d3230d94e79aad9206043",
+  "sample": 0,
+  "f1": 0.5,
+  "golds": [
+   "Saami, South Language"
+  ],
+  "p0_vec": [
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.502
+    ],
+    "gain_vec_max": 0.499
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Saami, South Language",
+      0.499
+     ]
+    ],
+    "max_delta": 0.499
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1840_3d474acada1d3230d94e79aad9206043",
+  "sample": 1,
+  "f1": 0.5,
+  "golds": [
+   "Saami, South Language"
+  ],
+  "p0_vec": [
+   0.002
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.564
+    ],
+    "gain_vec_max": 0.562
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Saami, South Language",
+      0.562
+     ]
+    ],
+    "max_delta": 0.562
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1840_3d474acada1d3230d94e79aad9206043",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-60_6b8ef173b0fe9eb52a18df50991df028",
+  "sample": 0,
+  "f1": 0.783,
+  "golds": [
+   "China",
+   "Equatorial Guinea",
+   "Guinea-Bissau",
+   "Guyana",
+   "Macau",
+   "Mozambique",
+   "Portugal",
+   "South Africa",
+   "Timor-Leste"
+  ],
+  "p0_vec": [
+   0.0,
+   0.017,
+   0.16,
+   0.009,
+   0.015,
+   0.053,
+   0.057,
+   0.025,
+   0.069
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.002,
+     0.083,
+     0.211,
+     0.007,
+     0.085,
+     0.035,
+     0.08,
+     0.027,
+     0.33
+    ],
+    "gain_vec_max": 0.261
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Equatorial Guinea",
+      0.068
+     ],
+     [
+      "Guinea-Bissau",
+      0.091
+     ],
+     [
+      "Macau",
+      0.093
+     ],
+     [
+      "Timor-Leste",
+      0.256
+     ]
+    ],
+    "max_delta": 0.256
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.005
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-60_6b8ef173b0fe9eb52a18df50991df028",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "China",
+   "Equatorial Guinea",
+   "Guinea-Bissau",
+   "Guyana",
+   "Macau",
+   "Mozambique",
+   "Portugal",
+   "South Africa",
+   "Timor-Leste"
+  ],
+  "p0_vec": [
+   0.0,
+   0.017,
+   0.16,
+   0.009,
+   0.015,
+   0.053,
+   0.057,
+   0.025,
+   0.069
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.063,
+     0.441,
+     0.47,
+     0.034,
+     0.114,
+     0.026,
+     0.034,
+     0.061,
+     0.28
+    ],
+    "gain_vec_max": 0.423
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Equatorial Guinea",
+      0.078
+     ],
+     [
+      "Timor-Leste",
+      0.053
+     ]
+    ],
+    "max_delta": 0.078
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "China",
+      0.061
+     ],
+     [
+      "Equatorial Guinea",
+      0.348
+     ],
+     [
+      "Guinea-Bissau",
+      0.218
+     ]
+    ],
+    "max_delta": 0.348
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-60_6b8ef173b0fe9eb52a18df50991df028",
+  "sample": 2,
+  "f1": 0.5,
+  "golds": [
+   "China",
+   "Equatorial Guinea",
+   "Guinea-Bissau",
+   "Guyana",
+   "Macau",
+   "Mozambique",
+   "Portugal",
+   "South Africa",
+   "Timor-Leste"
+  ],
+  "p0_vec": [
+   0.0,
+   0.016,
+   0.15,
+   0.009,
+   0.015,
+   0.053,
+   0.057,
+   0.025,
+   0.069
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.056,
+     0.432,
+     0.463,
+     0.036,
+     0.113,
+     0.029,
+     0.036,
+     0.059,
+     0.283
+    ],
+    "gain_vec_max": 0.416
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Equatorial Guinea",
+      0.069
+     ],
+     [
+      "Timor-Leste",
+      0.049
+     ]
+    ],
+    "max_delta": 0.069
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "China",
+      0.054
+     ],
+     [
+      "Equatorial Guinea",
+      0.339
+     ],
+     [
+      "Guinea-Bissau",
+      0.211
+     ]
+    ],
+    "max_delta": 0.339
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_a60904278de9f6a712bc87d1d25753d2",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_a60904278de9f6a712bc87d1d25753d2",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_a60904278de9f6a712bc87d1d25753d2",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_74344bde96ef2b85681fee5b1b5c6d0c",
+  "sample": 0,
+  "f1": 0.6,
+  "golds": [
+   "Iowa",
+   "Kansas",
+   "Missouri",
+   "Montana",
+   "Nebraska",
+   "North Dakota",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.012,
+   0.076,
+   0.039,
+   0.014,
+   0.074,
+   0.136,
+   0.147
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.006,
+     0.038,
+     0.002,
+     0.245,
+     0.005,
+     0.264,
+     0.493
+    ],
+    "gain_vec_max": 0.346
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Montana",
+      0.192
+     ],
+     [
+      "South Dakota",
+      0.093
+     ]
+    ],
+    "max_delta": 0.192
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "South Dakota",
+      0.17
+     ]
+    ],
+    "max_delta": 0.17
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_74344bde96ef2b85681fee5b1b5c6d0c",
+  "sample": 1,
+  "f1": 0.923,
+  "golds": [
+   "Iowa",
+   "Kansas",
+   "Missouri",
+   "Montana",
+   "Nebraska",
+   "North Dakota",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.012,
+   0.076,
+   0.039,
+   0.014,
+   0.074,
+   0.136,
+   0.147
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.102,
+     0.079,
+     0.02,
+     0.085,
+     0.031,
+     0.2,
+     0.397
+    ],
+    "gain_vec_max": 0.25
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Montana",
+      0.066
+     ],
+     [
+      "South Dakota",
+      0.076
+     ]
+    ],
+    "max_delta": 0.076
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Kansas",
+      0.05
+     ],
+     [
+      "North Dakota",
+      0.067
+     ],
+     [
+      "South Dakota",
+      0.131
+     ]
+    ],
+    "max_delta": 0.131
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_74344bde96ef2b85681fee5b1b5c6d0c",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Iowa",
+   "Kansas",
+   "Missouri",
+   "Montana",
+   "Nebraska",
+   "North Dakota",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.012,
+   0.076,
+   0.039,
+   0.014,
+   0.074,
+   0.136,
+   0.147
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.136,
+     0.143,
+     0.023,
+     0.042,
+     0.017,
+     0.14,
+     0.225
+    ],
+    "gain_vec_max": 0.124
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Kansas",
+      0.098
+     ]
+    ],
+    "max_delta": 0.098
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Kansas",
+      0.1
+     ]
+    ],
+    "max_delta": 0.1
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_f79ffe93341047ed2d8a39e5bb7d9156",
+  "sample": 0,
+  "f1": 0.5,
+  "golds": [
+   "Baltimore"
+  ],
+  "p0_vec": [
+   0.001
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.065
+    ],
+    "gain_vec_max": 0.063
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 7,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.035
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-环境重复(判死)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 25,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Baltimore",
+      0.063
+     ]
+    ],
+    "max_delta": 0.063
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_f79ffe93341047ed2d8a39e5bb7d9156",
+  "sample": 1,
+  "f1": 0.5,
+  "golds": [
+   "Baltimore"
+  ],
+  "p0_vec": [
+   0.001
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.011
+    ],
+    "gain_vec_max": 0.01
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Baltimore",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   },
+   {
+    "idx": 11,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.001
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_f79ffe93341047ed2d8a39e5bb7d9156",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 7,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 11,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 19,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_5258a162481dfc8eefa74a6324353bbc",
+  "sample": 0,
+  "f1": 0.8,
+  "golds": [
+   "Missouri",
+   "Nebraska",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.038,
+   0.037,
+   0.119
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.022,
+     0.026,
+     0.472
+    ],
+    "gain_vec_max": 0.352
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "South Dakota",
+      0.071
+     ]
+    ],
+    "max_delta": 0.071
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "South Dakota",
+      0.188
+     ]
+    ],
+    "max_delta": 0.188
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_5258a162481dfc8eefa74a6324353bbc",
+  "sample": 1,
+  "f1": 0.75,
+  "golds": [
+   "Missouri",
+   "Nebraska",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.037,
+   0.037,
+   0.117
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.035,
+     0.035,
+     0.289
+    ],
+    "gain_vec_max": 0.172
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.01
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "South Dakota",
+      0.052
+     ]
+    ],
+    "max_delta": 0.052
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-626_5258a162481dfc8eefa74a6324353bbc",
+  "sample": 2,
+  "f1": 0.5,
+  "golds": [
+   "Missouri",
+   "Nebraska",
+   "South Dakota"
+  ],
+  "p0_vec": [
+   0.037,
+   0.037,
+   0.117
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.109,
+     0.066,
+     0.329
+    ],
+    "gain_vec_max": 0.211
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Missouri",
+      0.077
+     ],
+     [
+      "South Dakota",
+      0.044
+     ]
+    ],
+    "max_delta": 0.077
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Nebraska",
+      0.06
+     ],
+     [
+      "South Dakota",
+      0.249
+     ]
+    ],
+    "max_delta": 0.249
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_db9695c22f0f88f0733e1286c7fffe30",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.005
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.933
+    ],
+    "gain_vec_max": 0.928
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.001
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.572
+     ]
+    ],
+    "max_delta": 0.572
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_db9695c22f0f88f0733e1286c7fffe30",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.005
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.944
+    ],
+    "gain_vec_max": 0.94
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.007
+   },
+   {
+    "idx": 7,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.013
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.632
+     ]
+    ],
+    "max_delta": 0.632
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_db9695c22f0f88f0733e1286c7fffe30",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.005
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.937
+    ],
+    "gain_vec_max": 0.933
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.008
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.616
+     ]
+    ],
+    "max_delta": 0.616
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1171_08b211abb4b7be318974b86ebdf429c6",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "James Earl Jones"
+  ],
+  "p0_vec": [
+   0.222
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.714
+    ],
+    "gain_vec_max": 0.492
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.788
+    ],
+    "gain_vec_max": 0.566
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.492
+     ]
+    ],
+    "max_delta": 0.492
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.566
+     ]
+    ],
+    "max_delta": 0.566
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1171_08b211abb4b7be318974b86ebdf429c6",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "James Earl Jones"
+  ],
+  "p0_vec": [
+   0.222
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.892
+    ],
+    "gain_vec_max": 0.669
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.111
+     ]
+    ],
+    "max_delta": 0.111
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.061
+     ]
+    ],
+    "max_delta": 0.061
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTest-1171_08b211abb4b7be318974b86ebdf429c6",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "James Earl Jones"
+  ],
+  "p0_vec": [
+   0.222
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.552
+    ],
+    "gain_vec_max": 0.329
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.785
+    ],
+    "gain_vec_max": 0.562
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.329
+     ]
+    ],
+    "max_delta": 0.329
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "James Earl Jones",
+      0.562
+     ]
+    ],
+    "max_delta": 0.562
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-372_5ac01361bfa0e8abd8f1fe93ab5818ba",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Jesus Christ"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.619
+    ],
+    "gain_vec_max": 0.599
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.105
+    ],
+    "gain_vec_max": 0.086
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Jesus Christ",
+      0.599
+     ]
+    ],
+    "max_delta": 0.599
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Jesus Christ",
+      0.086
+     ]
+    ],
+    "max_delta": 0.086
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-372_5ac01361bfa0e8abd8f1fe93ab5818ba",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Jesus Christ"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.611
+    ],
+    "gain_vec_max": 0.592
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Jesus Christ",
+      0.592
+     ]
+    ],
+    "max_delta": 0.592
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-372_5ac01361bfa0e8abd8f1fe93ab5818ba",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Jesus Christ"
+  ],
+  "p0_vec": [
+   0.019
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.594
+    ],
+    "gain_vec_max": 0.575
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Jesus Christ",
+      0.575
+     ]
+    ],
+    "max_delta": 0.575
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_7cec3b1d3e113f1b58741b36da555ded",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "The Twilight Saga: New Moon"
+  ],
+  "p0_vec": [
+   0.246
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.622
+    ],
+    "gain_vec_max": 0.375
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Twilight Saga: New Moon",
+      0.353
+     ]
+    ],
+    "max_delta": 0.353
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.018
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_7cec3b1d3e113f1b58741b36da555ded",
+  "sample": 1,
+  "f1": 0.4,
+  "golds": [
+   "The Twilight Saga: New Moon"
+  ],
+  "p0_vec": [
+   0.251
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.689
+    ],
+    "gain_vec_max": 0.438
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Twilight Saga: New Moon",
+      0.163
+     ]
+    ],
+    "max_delta": 0.163
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Twilight Saga: New Moon",
+      0.059
+     ]
+    ],
+    "max_delta": 0.059
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_7cec3b1d3e113f1b58741b36da555ded",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "The Twilight Saga: New Moon"
+  ],
+  "p0_vec": [
+   0.251
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.75
+    ],
+    "gain_vec_max": 0.499
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Twilight Saga: New Moon",
+      0.223
+     ]
+    ],
+    "max_delta": 0.223
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Twilight Saga: New Moon",
+      0.128
+     ]
+    ],
+    "max_delta": 0.128
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_892ff203107cd65a51d72847027d777f",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.003
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.858
+    ],
+    "gain_vec_max": 0.855
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.03
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.643
+     ]
+    ],
+    "max_delta": 0.643
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_892ff203107cd65a51d72847027d777f",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.003
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.852
+    ],
+    "gain_vec_max": 0.849
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.013
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.565
+     ]
+    ],
+    "max_delta": 0.565
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-25_892ff203107cd65a51d72847027d777f",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "The Nick and Jessica Variety Hour"
+  ],
+  "p0_vec": [
+   0.003
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.813
+    ],
+    "gain_vec_max": 0.809
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.094
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "The Nick and Jessica Variety Hour",
+      0.526
+     ]
+    ],
+    "max_delta": 0.526
+   },
+   {
+    "idx": 11,
+    "verdict": "可移除-环境重复(判死)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_3a127296c766540ac81b981024832cdc",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Juice"
+  ],
+  "p0_vec": [
+   0.056
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.493
+    ],
+    "gain_vec_max": 0.437
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Juice",
+      0.135
+     ]
+    ],
+    "max_delta": 0.135
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Juice",
+      0.483
+     ]
+    ],
+    "max_delta": 0.483
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_3a127296c766540ac81b981024832cdc",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Juice"
+  ],
+  "p0_vec": [
+   0.056
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.262
+    ],
+    "gain_vec_max": 0.206
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Juice",
+      0.039
+     ]
+    ],
+    "max_delta": 0.039
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Juice",
+      0.261
+     ]
+    ],
+    "max_delta": 0.261
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-2784_3a127296c766540ac81b981024832cdc",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Juice"
+  ],
+  "p0_vec": [
+   0.056
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.001
+    ],
+    "gain_vec_max": -0.055
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.055
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_5b0f29b4f30e70a790416e24b543f688",
+  "sample": 0,
+  "f1": 0.5,
+  "golds": [
+   "Baltimore"
+  ],
+  "p0_vec": [
+   0.015
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.255
+    ],
+    "gain_vec_max": 0.24
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.019
+    ],
+    "gain_vec_max": 0.004
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Baltimore",
+      0.237
+     ]
+    ],
+    "max_delta": 0.237
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": 0.002
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_5b0f29b4f30e70a790416e24b543f688",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Baltimore"
+  ],
+  "p0_vec": [
+   0.018
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.17
+    ],
+    "gain_vec_max": 0.152
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.021
+    ],
+    "gain_vec_max": 0.003
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Baltimore",
+      0.152
+     ]
+    ],
+    "max_delta": 0.152
+   },
+   {
+    "idx": 7,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Baltimore",
+      1.0
+     ]
+    ],
+    "max_delta": 1.0
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_5b0f29b4f30e70a790416e24b543f688",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Baltimore"
+  ],
+  "p0_vec": [
+   0.015
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.166
+    ],
+    "gain_vec_max": 0.151
+   },
+   {
+    "pathway": "r2",
+    "n_blocks": 1,
+    "ref_vec": [
+     0.026
+    ],
+    "gain_vec_max": 0.01
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Baltimore",
+      0.149
+     ]
+    ],
+    "max_delta": 0.149
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内·质量归因)",
+    "moved": [
+     [
+      "Baltimore",
+      0.79
+     ]
+    ],
+    "max_delta": 0.79
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1812_6a0e75033345508e8eadd5a47b0ad6b5",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Barbados"
+  ],
+  "p0_vec": [
+   0.057
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 3,
+    "ref_vec": [
+     0.843
+    ],
+    "gain_vec_max": 0.786
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.13
+     ]
+    ],
+    "max_delta": 0.13
+   },
+   {
+    "idx": 9,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.059
+   },
+   {
+    "idx": 11,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.804
+     ]
+    ],
+    "max_delta": 0.804
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1812_6a0e75033345508e8eadd5a47b0ad6b5",
+  "sample": 1,
+  "f1": 1.0,
+  "golds": [
+   "Barbados"
+  ],
+  "p0_vec": [
+   0.057
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.82
+    ],
+    "gain_vec_max": 0.763
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.099
+     ]
+    ],
+    "max_delta": 0.099
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.347
+     ]
+    ],
+    "max_delta": 0.347
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-1812_6a0e75033345508e8eadd5a47b0ad6b5",
+  "sample": 2,
+  "f1": 1.0,
+  "golds": [
+   "Barbados"
+  ],
+  "p0_vec": [
+   0.057
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.896
+    ],
+    "gain_vec_max": 0.84
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.193
+     ]
+    ],
+    "max_delta": 0.193
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Barbados",
+      0.727
+     ]
+    ],
+    "max_delta": 0.727
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_11fd073d11dbb5448b6e6ef3f85999f1",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_11fd073d11dbb5448b6e6ef3f85999f1",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-567_11fd073d11dbb5448b6e6ef3f85999f1",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_97bfe74dd244e1dbe7c6c6611278d3da",
+  "sample": 0,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_97bfe74dd244e1dbe7c6c6611278d3da",
+  "sample": 1,
+  "f1": 0.667,
+  "golds": [
+   "Belgium"
+  ],
+  "p0_vec": [
+   0.057
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.092
+    ],
+    "gain_vec_max": 0.034
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.021
+   },
+   {
+    "idx": 9,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Belgium",
+      0.068
+     ]
+    ],
+    "max_delta": 0.068
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-241_97bfe74dd244e1dbe7c6c6611278d3da",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 9,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_343ed3d9e115281a150a454a44734cf0",
+  "sample": 0,
+  "f1": 1.0,
+  "golds": [
+   "Brooklyn"
+  ],
+  "p0_vec": [
+   0.0
+  ],
+  "pathways": [
+   {
+    "pathway": "r1",
+    "n_blocks": 2,
+    "ref_vec": [
+     0.164
+    ],
+    "gain_vec_max": 0.164
+   }
+  ],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "有效-概率(通路内)",
+    "moved": [
+     [
+      "Brooklyn",
+      0.172
+     ]
+    ],
+    "max_delta": 0.172
+   },
+   {
+    "idx": 7,
+    "verdict": "可移除-概率(通路内)",
+    "moved": [],
+    "max_delta": -0.007
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_343ed3d9e115281a150a454a44734cf0",
+  "sample": 1,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 5,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 13,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   },
+   {
+    "idx": 19,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ },
+ {
+  "case_id": "WebQTrn-452_343ed3d9e115281a150a454a44734cf0",
+  "sample": 2,
+  "f1": 0.0,
+  "golds": [],
+  "p0_vec": [],
+  "pathways": [],
+  "blocks": [
+   {
+    "idx": 7,
+    "verdict": "不评估(f1=0)",
+    "moved": [],
+    "max_delta": null
+   }
+  ]
+ }
+]
