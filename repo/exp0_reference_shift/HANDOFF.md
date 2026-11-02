@@ -4,9 +4,13 @@ Offline, zero-training validation of the CGSD/OPSD mechanism premise:
 **does giving the same model the correct reference answer change its behavior
 probability distribution on the same trajectory prefix?**
 
-Verdict up front: **NOT SUPPORTED for agent-policy transfer; weakly supported
-for answer-knowledge only.** Details, caveats, and the one remaining open
-test (§6) below.
+Verdict (narrowed 2026-11-02 after audit): **a simple answer-only reference
+shows no detectable action/thinking log-probability shift on realized
+trajectories; answer-knowledge transfer is weakly supported.** The ACTUAL
+OPSD teacher condition (refined decision reference from
+build_teacher_prompts) is NOT tested here — see §5. This experiment measures
+selected-token log-probs only; full-vocabulary distribution shift (what GKD
+optimizes) is the follow-up Exp1-A.
 
 ## 1. Setup
 
@@ -113,14 +117,29 @@ finding that cognition is not the bottleneck.
   continuation is itself. This limits how much Δcorrect can rise, though
   the suppression side (demoting removable/invalid realized actions) had
   room and showed nothing.
-- One injection template (one-line `Verified answer:` block); one prompt
-  family (C123); one model (9B). A richer behavioral reference (the
-  decision-digest teacher prompt used in pool construction) is untested —
-  but that conflates reference with demonstration.
+- One injection template (one-line `Verified answer:` block) — this is
+  answer-only privileged information, NOT the OPSD refined decision
+  reference (`[REFINED EXPERIENCE DATA]` with answer target / FACT chains /
+  relation choices, build_teacher_prompts L586-680, injected by
+  kgqa_scheduler L1185-1243). The OPSD teacher condition itself is untested.
+- Model: 9B (the trajectory generator). OPSD trains 4B (opsd_train.yaml) —
+  a 4B replication is required before inference to the trainee.
+- Selected-token log-prob only: a zero shift does NOT rule out
+  redistribution over un-sampled candidates (KL(q||p)>0 with equal realized
+  token prob). Full-vocab + top-256 GKD KL = Exp1-A.
+- Near injection appends to the last history message (often a tool result)
+  and falls back to system on turn 0 — exploratory only, not a clean
+  position control.
 - INVALID n=3 (env-repeat blocks only in this dataset) — the negative
   group is thin; REDUNDANT carries the contrast.
 
-## 6. The one remaining open test (Figure 3, candidate margin)
+## 6. Remaining open tests (Exp1-A/B/C; see audit 2026-11-02)
+
+Exp1-A full-distribution audit (full KL + top-256 GKD KL + entropy +
+top-1 margin); Exp1-B reference decomposition (answer-only /
+decision-only / full refined reference); Exp1-C candidate preference G.
+
+### Original open test (Figure 3, candidate margin)
 
 The design cannot answer whether z changes **which action would be chosen**
 — only whether it re-weights the taken one. Construct, per state,
@@ -143,5 +162,39 @@ this is the decisive remaining check before abandoning the mechanism.
 | `results/fig_{system,near}_position.png` | groups × conditions bars |
 | `results/prob_pathway_r9a_v5.json` | RDL verdicts + golds + p0 vectors |
 
+Note: row field `checkpoint_hash` is the sha256 of the model's
+`config.json` (architecture/version marker), NOT a weights hash.
+
 The 55MB source rollout report is not shipped (regenerable; rows in the
 results carry all analysis fields).
+
+## 8. Exp1-A result (2026-11-02, executed same day as the audit)
+
+The audit's central objection — "selected-token logp ≈ 0 does not rule out
+full-distribution redistribution" — is now measured directly
+(`exp1a/exp1_dist_audit.py`, both 9B and 4B, system injection, all four
+conditions, thinking+action spans):
+
+| quantity | 9B | 4B | reading |
+|---|---|---|---|
+| KL_full (action span, correct) | **0.0002** | 0.0004 | full 248K-vocab distribution unchanged |
+| KL_top256 (GKD support) | 0.0002 | 0.0004 | identical to full — teacher top-256 mass = 1.000, so the GKD support ≈ the whole distribution |
+| KL_full (thinking, correct) | 0.0022 | 0.0024 | trace perturbation, correct > wrong (0.0012) > placebo (0.0009) — ordered but ~0.002 nats |
+| KL_full (answer turn, correct) | 0.0029 | 0.0017 | same order of magnitude |
+| top-1 change rate | 0.002–0.016 | 0.002–0.016 | argmax flips on ≤1.6% of positions |
+| entropy delta | ≤0.0016 nats | ≤0.0016 | no sharpening/flattening |
+
+**Per the audit's quadrant table: Full KL ≈ 0 AND Top-256 KL ≈ 0 ⇒ the
+reference does not change the predictive distribution.** The measurement-
+artifact hypothesis is rejected: there is no hidden redistribution that
+Exp0's selected-token metric missed. Both models agree (the 4B trainee
+shows the same null as the 9B generator). One anomaly: any REAL answer
+(correct or wrong) perturbs slightly more than placebo — but at 0.002–0.005
+nats this is not a training-scale signal.
+
+Remaining per the audit: Exp1-B (reference decomposition — the refined
+decision reference is now the ONLY untested injection with a live
+mechanism hypothesis) and Exp1-C (candidate preference G). Files:
+`exp1a/dist_audit_{9b,4b}.jsonl` (row schema adds kl_full/kl_top256 means
+and sums, mass256 both sides, top1_change_rate, entropy_delta, recomputed
+logp_shift, per span).

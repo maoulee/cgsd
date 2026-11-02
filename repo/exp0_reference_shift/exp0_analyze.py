@@ -18,12 +18,17 @@ GROUP_OF = {"EFFECTIVE": "positive", "KEEP": "positive",
             "ANSWER": "answer"}
 
 
+_last_rows = []
+
+
 def load():
+    global _last_rows
     import glob
     paths = sorted(glob.glob(IN + ".shard*")) or [IN]
     rows = []
     for p in paths:
         rows += [json.loads(l) for l in open(p)]
+    _last_rows = [r for r in rows if "logp_mean" in r]
     ok = [r for r in rows if "logp_mean" in r]
     # pair by block: Δ = cond − none
     by_block = collections.defaultdict(dict)
@@ -107,6 +112,8 @@ def paired_bootstrap(blocks, g1, g2, cond="correct", n_boot=10000, seed=0):
 
 def main():
     blocks = load()
+    global rows_ok_global
+    rows_ok_global = _last_rows
     print(f"blocks scored: {len(blocks)}")
     st = group_stats(blocks)
     print(f"\n{'group':10s} {'cond':8s} {'n':>4s} {'Δmean':>8s} {'Δsum':>8s}")
@@ -197,6 +204,32 @@ def main():
         print(f"\nwrote {OUTDIR}/fig_groups_conds.png")
     except ImportError:
         print("matplotlib missing — tables only")
+
+    # answer-channel paired bootstrap (reproduces HANDOFF §2 numbers)
+    ans_by = collections.defaultdict(dict)
+    for r in rows_ok_global:
+        if r.get("label5") == "ANSWER":
+            ans_by[(r["case_id"], r["sample"])][r["condition"]] = r["logp_mean"]
+    aks = [k for k, d in ans_by.items()
+           if all(c in d for c in CONDS)]
+    if aks:
+        print("\nanswer-channel paired bootstrap:")
+        rng = random.Random(0)
+        for i, name in ((0, "d_correct"), (1, "d_wrong"), (2, "d_placebo"),
+                        (3, "specificity(correct-placebo)")):
+            pts = []
+            for k in aks:
+                d = ans_by[k]
+                pts.append((d["correct"] - d["none"]) if i == 0 else
+                           (d["wrong"] - d["none"]) if i == 1 else
+                           (d["placebo"] - d["none"]) if i == 2 else
+                           (d["correct"] - d["placebo"]))
+            bs = sorted(sum(pts[rng.randrange(len(pts))]
+                            for _ in range(len(pts))) / len(pts)
+                        for _ in range(10000))
+            print(f"  {name:28s} {sum(pts)/len(pts):+.5f} "
+                  f"CI95=[{bs[250]:+.5f}, {bs[9750]:+.5f}] "
+                  f"p(<=0)={sum(1 for x in bs if x <= 0)/len(bs):.4f}")
 
     json.dump({"stats": {f"{g}|{c}": v for (g, c), v in st.items()},
                "separations": {f"{c}|{g2}": v for (c, g2), v in seps.items()},
