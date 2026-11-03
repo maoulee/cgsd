@@ -379,3 +379,41 @@ pending data expansion (diverse-path successes + environment-validated
 negatives). Decomposition note (audit): 4B G = Δs(a+) +0.0080 − Δs(a−)
 (−0.0092) — the shift raises the effective action AND lowers the
 alternative, not a uniform boost.
+
+## 13. One-Step Transfer Test (2026-11-03): FAILS — optimizer dynamics swamp the teacher signal
+
+U0–U3 per design (case split 21 train / 7 held-out, 21 held-out pairs,
+frozen teacher, 4B, LoRA r64/α128/lora_plus×4, AdamW lr 2e-5, ONE
+accumulated step, held-out scored BARE). `ustep/ustep_transfer.py` +
+`ustep/ustep_transfer.json`.
+
+| condition | train KL | grad_norm | held-out ΔM | ΔM − ΔM(U0) | case-equal [CI95] | pos cases |
+|---|---|---|---|---|---|---|
+| U0 identity | 0.00000 | 2.1e-02 | **−0.0766** | 0 | −0.071 [−0.089,−0.051] | 0/7 |
+| U1 answer | 0.00353 | 4.7e3 | −0.0636 | +0.013 | −0.054 [−0.084,−0.024] | 1/7 |
+| **U2 refined** | **0.02838** | 1.1e4 | **−0.0733** | **+0.003** | −0.065 [−0.093,−0.041] | 0/7 |
+| U3 wrong | 0.01013 | 5.2e3 | −0.0684 | +0.008 | −0.063 [−0.085,−0.043] | 0/7 |
+
+Findings:
+1. **One-step transfer fails**: all conditions NEGATIVE on held-out cases
+   (0–1/7 positive). U2's differential vs the identity baseline is +0.003
+   — indistinguishable from the wrong-reference control (+0.008) and
+   SMALLER than answer-only (+0.013). The teacher's positive preference
+   (C2) does not survive one full-token GKD step.
+2. **The failure is optimizer dynamics, not teacher signal.** The identity
+   step U0 — gradient 2.1e-2, pure fp32 roundoff — still moves held-out
+   ΔM by −0.077. Adam's first step is sign-normalized
+   (g/(|g|+ε)≈sign(g)): every LoRA parameter takes a full ±lr·4 step
+   regardless of gradient size. The systematic direction is FLATTENING:
+   ΔlogP(a+) < 0 and ΔlogP(a−) > 0 in every condition — high-probability
+   tokens down, low-probability up. The one-step noise floor (0.077) is
+   ~5× the signal we are trying to transfer (0.014).
+3. Per the pre-agreed decision rule ("full-token GKD fails while the
+   teacher's independent-reference preference is positive ⇒ test
+   selective distillation, don't abandon"), the next interventions are:
+   (a) loss on ACTION-SPAN tokens only (thinking/format excluded) to cut
+   the flattening surface; (b) optimizer-side controls (loss floor skip,
+   higher Adam ε or unnormalized scaling, lr warmup) to kill the sign-step
+   floor. Caveats: 7 held-out cases / 21 pairs (small); one step with
+   production lr does not extrapolate to multi-step with momentum — but
+   it establishes that the signal is invisible at single-step granularity.
