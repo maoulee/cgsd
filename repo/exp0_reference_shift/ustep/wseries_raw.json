@@ -1,0 +1,30 @@
+{
+ "premise_gap_mean": 0.023414582223101086,
+ "premise_gap_pos": "4/8",
+ "arms": [
+  {
+   "arm": "W1_decision",
+   "scope": "decision",
+   "steps": 1,
+   "d_p_dec_mean": 0.016996558373997786,
+   "d_p_dec_pos": "4/8",
+   "d_act_mean": 0.05758187374486969
+  },
+  {
+   "arm": "W2_action",
+   "scope": "action",
+   "steps": 1,
+   "d_p_dec_mean": 0.017857623989673485,
+   "d_p_dec_pos": "4/8",
+   "d_act_mean": 0.06351825973100103
+  },
+  {
+   "arm": "W3_turn",
+   "scope": "turn",
+   "steps": 1,
+   "d_p_dec_mean": 0.0009723184403206018,
+   "d_p_dec_pos": "5/8",
+   "d_act_mean": 0.057274366096219706
+  }
+ ]
+}

@@ -124,16 +124,28 @@ def main():
                 if idx < 1 or tr[idx - 1].get("role") != "assistant":
                     continue
                 st_ = tr[idx - 1]
-                act = parse_action(st_.get("content") or "")
-                if not act:
+                raw = (st_.get("raw") or st_.get("content") or "").strip()
+                m_act = re.search(r"(?:^|\n)tool:\s*retrieve_subgraph",
+                                  raw)
+                if not m_act:
                     continue
-                a_text = json.dumps(act, ensure_ascii=False)
-                rsp = rel_span_in_action(a_text)
-                if not rsp:
+                # think-cut = raw up to the flat action start
+                think = raw[:m_act.start()].rstrip() + "\n\n" \
+                    if m_act.start() > 0 else " "
+                a_text = raw[m_act.start():].strip()
+                m_rel = re.search(r"(?:^|\n)relations:\s*", a_text)
+                if not m_rel:
                     continue
-                thought = (st_.get("reasoning") or "").strip()
-                think = (f"<think>\n{thought}\n</think>\n\n"
-                         if thought else " ")
+                # char range of the relations VALUES in the flat action text
+                lo_c = m_rel.end()
+                hi_c = a_text.find("\n", lo_c)
+                hi_c = hi_c if hi_c > 0 else len(a_text)
+                rsp = (len(tok(a_text[:lo_c], add_special_tokens=False)
+                           .input_ids),
+                       len(tok(a_text[:lo_c], add_special_tokens=False)
+                           .input_ids) +
+                       len(tok(a_text[lo_c:hi_c], add_special_tokens=False)
+                           .input_ids))
                 hist = []
                 for mmsg in tr[:idx - 1]:
                     if mmsg.get("role") == "assistant":
@@ -246,14 +258,16 @@ def main():
             else:                                  # full turn
                 rng = range(0 if p["think"].strip() else b["act_lo"],
                             b["act_hi"])
-            all_preds.append(sorted(rng))
+            all_preds.append(sorted(p for p in rng
+                                     if 0 < p < len(b["f_ids"]) - 1))
         N = sum(len(x) for x in all_preds)
         for _ in range(args.steps):
             opt.zero_grad(set_to_none=True)
             for p, b, preds in zip(pts, base, all_preds):
                 # teacher view boundaries shift by the suffix delta
                 delta = len(b["f_ids_t"]) - len(b["f_ids"])
-                t_preds = [x + delta for x in preds]
+                t_max = len(b["f_ids_t"]) - 1
+                t_preds = [min(x + delta, t_max - 1) for x in preds]
                 # chunked fwd/bwd (peak [chunk, V] logits only)
                 for c0 in range(0, len(preds), 256):
                     cp = preds[c0:c0 + 256]

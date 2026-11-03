@@ -558,3 +558,28 @@ Readings:
    chain, not from crash-avoidance heuristics.
    Open: whether W1-scope learning generalizes to held-out cases (the
    C2 A/B question still governs that step).
+
+## 17a. W-series RAW-FORMAT rerun (2026-11-03, user caught a fidelity gap)
+
+The user pointed out the environment uses the FLAT MD protocol, not JSON.
+Verified: the model's actual output (raw field) is
+`tool: retrieve_subgraph\ncenter: ...\nrelations: a | b | c`; the JSON in
+`content` is the environment's canonicalized parse. The original W-series
+supervised a re-serialized JSON form — a fidelity deviation. Rerun on the
+model's REAL output tokens (decision span = the values after `relations:`
+to end of line, within the raw text):
+
+| arm | JSON version (re-serialized) | **RAW version (real output)** |
+|---|---|---|
+| premise q−p | +0.032 (5/8) | **+0.023 (4/8)** — holds |
+| W1 decision tokens only | +0.044 (5/8) | **+0.017 (4/8)** — still learns |
+| W2 whole flat action | +0.039 (4/8) | **+0.018 (4/8)** — still learns |
+| W3 + thinking | −0.003 (2/8) | **+0.001 (5/8)** — dead (−95% vs W2) |
+
+The structure fully transfers to the production format: decision-token-only
+GKD learns in-situ; thinking supervision collapses it (0.018 → 0.001).
+NOTE: the JSON magnitudes were inflated (out-of-distribution serialization
+→ larger gradients); **the RAW numbers (+0.023 premise / +0.017 learning)
+are the production-fidelity effect sizes** and should be the cited ones.
+Production implementation of selective distillation supervises the
+`relations:` line values in the flat protocol.
