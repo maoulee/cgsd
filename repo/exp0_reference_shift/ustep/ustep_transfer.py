@@ -286,35 +286,62 @@ def main():
     base_scores = [score_bare(p, adapter_on=False) for p in eval_pairs]
 
     results = []
-    for cond in ("U0_identity", "U1_answer", "U2_refined", "U3_wrong"):
+    conds = os.environ.get("USTEP_CONDS",
+            "Z0_nostep,Z1_zerograd,Z2_idmean,Z3_id_prod").split(",")
+    for cond in conds:
         for k in adapter0:
             pm.state_dict()[k].copy_(adapter0[k])
         pm.zero_grad(set_to_none=True)
         pm.train()
+        eff_lr = LR * (1.0 / 5.0) if cond in ("Z3_id_prod",) else LR
         opt = torch.optim.AdamW(
             [{"params": [p_ for n_, p_ in pm.named_parameters()
-                         if "lora_A" in n_], "lr": LR},
+                         if "lora_A" in n_], "lr": eff_lr},
              {"params": [p_ for n_, p_ in pm.named_parameters()
-                         if "lora_B" in n_], "lr": LR * LORA_PLUS}],
-            lr=LR, weight_decay=0.0)
+                         if "lora_B" in n_], "lr": eff_lr * LORA_PLUS}],
+            lr=eff_lr, weight_decay=0.0, eps=1e-8)
+        # N = total supervised tokens over ALL train seqs (token-mean, the
+        # production loss normalization) — fixed per audit 2026-11-03
+        all_preds = [span_preds(sq["spans"]) for sq in train_seqs]
+        N = sum(len(p) for p in all_preds)
         tot_kl, tot_n = 0.0, 0
-        for seq in train_seqs:
-            preds = span_preds(seq["spans"])
+        for seq, preds in zip(train_seqs, all_preds):
+            if cond in ("Z0_nostep", "Z1_zerograd"):
+                break                       # controls: no backward at all
             s_logits = fwd_span(seq["ids"], preds, grad=True)
-            if cond == "U0_identity":
+            if cond in ("U0_identity", "Z2_idmean", "Z3_id_prod"):
                 t_logits = s_logits.detach()
             else:
                 t_ids2, t_spans2 = seq["t_views"][cond]
                 t_logits = fwd_span(t_ids2, span_preds(t_spans2), grad=False)
             kl = kl_top256(s_logits, t_logits)
-            (kl.sum()).backward()
+            (kl.sum() / N).backward()       # token-mean (production form)
             tot_kl += float(kl.sum()); tot_n += int(kl.shape[1])
             del s_logits, t_logits
+        if cond == "Z1_zerograd":
+            for p_ in pm.parameters():
+                p_.grad = None
+            pm.zero_grad(set_to_none=True)
         grads = [p_.grad for _, p_ in pm.named_parameters()
                  if p_.grad is not None]
         gnorm = float(torch.linalg.vector_norm(torch.stack(
             [torch.linalg.vector_norm(g.float()) for g in grads]))) if grads else 0.0
-        opt.step()
+        if grads:
+            absf = torch.cat([g.abs().float().flatten() for g in grads])
+            q = torch.quantile(absf, torch.tensor([0.5, 0.9],
+                                  device=absf.device)) \
+                if absf.numel() < 10_000_000 else None
+            gq = {"p50": float(absf.median()),
+                  "p90": float(q[1]) if q is not None else None,
+                  "max": float(absf.max()),
+                  "frac_gt_eps": float((absf > 1e-8).float().mean())}
+        else:
+            gq = {}
+        if cond == "Z3_id_prod":
+            torch.nn.utils.clip_grad_norm_(
+                [p_ for p_ in pm.parameters() if p_.grad is not None], 1.0)
+        if cond != "Z0_nostep":
+            opt.step()
         pm.eval()
         # held-out eval (bare, adapter ON)
         dm, dap, dan = [], [], []
@@ -326,11 +353,16 @@ def main():
             dap.append(s["a_pos"] - b["a_pos"])
             dan.append(s["a_neg"] - b["a_neg"])
         rec = {"condition": cond, "train_kl_tokmean": tot_kl / max(tot_n, 1),
-               "grad_norm": gnorm, "n_heldout": len(dm),
+               "grad_norm": gnorm, "grad_quantiles": gq,
+               "n_heldout": len(dm),
                "dM_transfer_mean": st.mean(dm) if dm else None,
                "d_logp_apos": st.mean(dap) if dap else None,
                "d_logp_aneg": st.mean(dan) if dan else None,
-               "dM_pairs": dm}
+               "dM_pairs": dm,
+               "pairs_detail": [{"case_id": eval_pairs[i]["cid"],
+                                 "delta_margin": dm[i],
+                                 "m_before": base_scores[i]["a_pos"] - base_scores[i]["a_neg"]}
+                                for i in range(len(dm))]}
         results.append(rec)
         print(f"[ustep] {cond:11s} trainKL={rec['train_kl_tokmean']:.5f} "
               f"grad={gnorm:.3e} | held-out ΔM={rec['dM_transfer_mean']:+.5f} "
@@ -350,7 +382,7 @@ def main():
         rec["dM_case_equal"] = st.mean(cm)
         rec["dM_CI95_case"] = [bs[250], bs[9750]]
         rec["dM_pos_cases"] = f"{sum(1 for x in cm if x > 0)}/{len(cm)}"
-        rec.pop("dM_pairs")
+        rec.pop("dM_pairs", None)
     json.dump(results, open(args.out, "w"), indent=1)
     print(f"[ustep] wrote {args.out}", flush=True)
 

@@ -417,3 +417,38 @@ Findings:
    floor. Caveats: 7 held-out cases / 21 pairs (small); one step with
    production lr does not extrapolate to multi-step with momentum — but
    it establishes that the signal is invisible at single-step granularity.
+
+## 14. Z-series controls + normalized U-series rerun (2026-11-03): §13 mechanism RETRACTED; transfer failure CONFIRMED and sharper
+
+Audit fixes applied: token-mean normalization in backward (production form),
+per-pair records + PAIRED case-level differential, gradient quantiles,
+production first-step optimizer variant (warmup lr 2e-5/5 + clip 1.0).
+
+Z-controls (identity, held-out ΔM): Z0 no-step = **+0.000000**,
+Z1 zero-grad+step = **+0.000000** (eval path clean); Z2 identity with
+token-mean = **−0.0009** (grad 3.6e-7, ZERO coordinates above Adam ε);
+Z3 production first-step config = −0.0011. **The §13 U0 −0.077 was an
+artifact of our unnormalized kl.sum() backward** (5 orders of gradient
+scale inflation → sign-step regime). Retracted per the audit's warning;
+the production-equivalent identity noise floor is −0.001.
+
+Normalized U-series rerun (the decisive table):
+
+| condition | train KL | grad | held-out ΔM | paired diff vs U0 (case CI95) |
+|---|---|---|---|---|
+| U0 identity | 0 | 3.5e-7 | −0.0014 | — |
+| U1 answer | 0.0035 | 9.9e-2 | −0.0636 | **−0.052 [−0.081,−0.023] p=1e-4** |
+| U2 refined | 0.0284 | 2.3e-1 | −0.0728 | **−0.063 [−0.091,−0.038] p≈0** |
+| U3 wrong | 0.0101 | 5.2e-2 | −0.0670 | **−0.066 [−0.081,−0.041] p≈0** |
+
+Reading (per the audit's calibrated wording): one-step transfer was not
+observed — and now with a clean floor: **every REAL reference condition
+(correct / answer-only / WRONG-case) damages held-out margins by the same
+−0.06 with zero reference-specificity** (U2≈U3≈U1). The damage is a
+property of a full-token GKD step at production lr under Adam sign
+normalization (real KL gradients put coordinates >> ε), not of the
+identity noise (now −0.001) and not of reference content. The teacher's
+positive preference (C2) does not survive the step; the step itself is
+destructive regardless of what the teacher knows. Next per plan: V-series
+2×2 (loss scope × optimizer stability, e.g. U2 at Z3's warmup lr+clip =
+V1) to test whether the damage can be suppressed while signal survives.
