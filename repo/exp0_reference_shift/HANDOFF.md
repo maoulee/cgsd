@@ -490,3 +490,35 @@ FINAL READINGS:
    regardless of scope (→ contrastive/advantage forms, GRPO/RSCC track).
    Multi-step accumulation shows flat, not rising — (c) "just needs more
    steps" is not supported.
+
+## 16. G_k/M_k dual-arm tracker (2026-11-03): frozen vs synced teacher — the user's question answered
+
+Fixed held-out states + validated candidates, evaluated every 2 steps over
+10 steps (V1 form: full-token GKD, stabilized optimizer; the ONLY
+difference between arms is teacher co-movement; `ustep/gmk_{frozen,synced}.json`).
+
+| step | M_k frozen (bare preference) | G_k frozen | M_k SYNCED | G_k SYNCED |
+|---|---|---|---|---|
+| 0 | +0.2633 | +0.0091 | +0.2633 | +0.0091 |
+| 2 | +0.2361 | +0.0125 | +0.2192 | +0.0125 |
+| 4 | +0.2550 | +0.0110 | **+0.1378** | +0.0188 |
+| 6 | +0.2540 | +0.0113 | **+0.1039** | +0.0216 |
+| 8 | +0.2519 | +0.0137 | +0.1180 | +0.0265 |
+| 10 | +0.2594 | +0.0136 | **+0.1282** | +0.0267 |
+
+Readings (per the audit's quadrant table, plus one pattern beyond it):
+1. **FROZEN arm**: M stable (−1.5% over 10 steps, recovers from the step-2
+   dip), G persists at +0.009..0.014 — quadrant "teacher retains guidance
+   advantage, student does not absorb it". No harm, no transfer.
+2. **SYNCED arm** (= the production configuration KGQA_TEACHER_SAME_WEIGHTS=1):
+   M COLLAPSES −51% by step 10 (0.263→0.128, floor 0.104) while G RISES 3×
+   (0.009→0.027). The policy is becoming MORE reference-dependent while its
+   unconditioned decision skill erodes — it learns to need the crutch while
+   losing the ability to walk. A dynamic teacher does not just fail to
+   help; it amplifies student degradation.
+3. Combined with §15: the final mechanism verdict — per-token GKD never
+   transfers the teacher's reference-conditioned decision advantage to the
+   bare policy (M never rises in ANY arm), and with a co-moving teacher it
+   actively destroys it. The two production-relevant fixes (frozen teacher,
+   stabilized optimizer) remove the harm and expose the vacancy: the
+   decision knowledge does not travel through this loss.

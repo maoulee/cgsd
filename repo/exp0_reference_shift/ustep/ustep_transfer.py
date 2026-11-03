@@ -102,6 +102,8 @@ def main():
     ap.add_argument("--gpu", type=int, default=0)
     ap.add_argument("--cap", type=int, default=2, help="train seqs per case")
     ap.add_argument("--steps", type=int, default=1, help="optimizer steps")
+    ap.add_argument("--eval_every", type=int, default=0,
+                    help="evaluate G_k/M_k every N steps (0 = end only)")
     ap.add_argument("--out", default="reports/ustep_transfer.json")
     args = ap.parse_args()
 
@@ -276,17 +278,21 @@ def main():
                               if thought else " "),
                     "a_pos": json.dumps(act, ensure_ascii=False),
                     "a_neg": json.dumps(neg, ensure_ascii=False),
+                    "ref_suffix": "\n\n" + wrap_structured(
+                        render_fact_grouped(ref_of[cid], answer=gold_of[cid],
+                                            gold=gold_of[cid])),
                 })
     print(f"[ustep] held-out pairs: {len(eval_pairs)}", flush=True)
 
-    def score_bare(p, adapter_on):
-        """mean logp of a candidate under the bare system (no reference)."""
+    def score_bare(p, adapter_on, suffix=""):
+        """mean logp of a candidate under (optionally referenced) system."""
         out = {}
         for cand in ("a_pos", "a_neg"):
             full_text = (f"{p['think']}{p[cand]}"
                          if p["think"].strip() != "" else p[cand])
-            f_ids = render(tok, system_base, p["user"], p["hist"], full_text)
-            c_ids = render(tok, system_base, p["user"], p["hist"],
+            f_ids = render(tok, system_base + suffix, p["user"], p["hist"],
+                           full_text)
+            c_ids = render(tok, system_base + suffix, p["user"], p["hist"],
                            p["think"] if p["think"].strip() != "" else " ")
             span = span_logp(f_ids, len(c_ids), len(f_ids),
                              adapter_on=adapter_on)
@@ -321,6 +327,26 @@ def main():
         # production loss normalization) — fixed per audit 2026-11-03
         all_preds = [span_preds(sq["spans"], scope) for sq in train_seqs]
         N = sum(len(p) for p in all_preds)
+        def eval_gm(tag):
+            pm.eval()
+            Mk, Gk = [], []
+            for p, b in zip(eval_pairs, base_scores):
+                s_b = score_bare(p, adapter_on=True)
+                s_c = score_bare(p, adapter_on=True, suffix=p["ref_suffix"])
+                if None in (s_b["a_pos"], s_c["a_pos"]):
+                    continue
+                Mk.append(s_b["a_pos"] - s_b["a_neg"])
+                Gk.append((s_c["a_pos"] - s_c["a_neg"])
+                          - (s_b["a_pos"] - s_b["a_neg"]))
+            rec = {"tag": tag, "M_k": st.mean(Mk), "G_k": st.mean(Gk),
+                   "M_detail": Mk, "G_detail": Gk}
+            print(f"[ustep]   {tag:10s} M_k={rec['M_k']:+.5f} "
+                  f"G_k={rec['G_k']:+.5f} (n={len(Mk)})", flush=True)
+            pm.train()
+            return rec
+        trajectory = []
+        if args.eval_every:
+            trajectory.append(eval_gm("step0"))
         for step_i in range(args.steps):
           if cond in PROD_OPT:   # linear warmup over steps (5-step schedule)
             for gi, g in enumerate(opt.param_groups):
@@ -361,6 +387,8 @@ def main():
                 [p_ for p_ in pm.parameters() if p_.grad is not None], 1.0)
           if cond != "Z0_nostep":
             opt.step()
+          if args.eval_every and (step_i + 1) % args.eval_every == 0:
+            trajectory.append(eval_gm(f"step{step_i+1}"))
         pm.eval()
         # held-out eval (bare, adapter ON)
         dm, dap, dan = [], [], []
@@ -377,7 +405,7 @@ def main():
                "dM_transfer_mean": st.mean(dm) if dm else None,
                "d_logp_apos": st.mean(dap) if dap else None,
                "d_logp_aneg": st.mean(dan) if dan else None,
-               "dM_pairs": dm,
+               "dM_pairs": dm, "gm_trajectory": trajectory,
                "pairs_detail": [{"case_id": eval_pairs[i]["cid"],
                                  "delta_margin": dm[i],
                                  "m_before": base_scores[i]["a_pos"] - base_scores[i]["a_neg"]}
