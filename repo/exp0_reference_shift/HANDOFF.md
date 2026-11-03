@@ -356,3 +356,26 @@ independently of the scored trajectory. Whether this reflects transferable
 decision competence rather than reference-action matching requires a
 larger no-overlap sample; whether GKD transfers it to the Student is the
 One-Step Transfer Test (next).
+
+## 12a. Analyzer correction (2026-11-03, audit #2)
+
+The §12 case bootstrap was WRONG: `rng.choice(c) for c in cs` sampled one
+trajectory within each FIXED case — within-case variation, not case
+resampling risk. Corrected scheme (cases resampled with replacement,
+case-equal weighting; `exp1c2_analyze.py` also now reports true case
+count and leave-one-case-out sensitivity, and accepts merged jsonl):
+
+| model | pair-mean | case-equal | correct CI95(case) | pos cases | LOCO-worst |
+|---|---|---|---|---|---|
+| 9B G_t2_ind | +0.0092 | **+0.00365** | [−0.0066, +0.0153] — crosses 0 | 12/28 | +0.0002 |
+| 4B G_t2_ind | +0.0171 | **+0.01166** | **[+0.0004, +0.0248], p=0.021** | 19/28 | +0.0071 |
+
+Also corrected: 78 pairs span **28 cases** (not ~17), and the no-overlap
+subset is 9 pairs from **8 cases** — under correct case bootstrap BOTH
+models' no-overlap CIs include zero. Verdict: the independent-reference
+positive signal retains statistical support in 4B only, and barely; the
+A-vs-B question (decision competence vs reference matching) remains open
+pending data expansion (diverse-path successes + environment-validated
+negatives). Decomposition note (audit): 4B G = Δs(a+) +0.0080 − Δs(a−)
+(−0.0092) — the shift raises the effective action AND lowers the
+alternative, not a uniform boost.
