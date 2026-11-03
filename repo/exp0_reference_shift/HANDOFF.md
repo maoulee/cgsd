@@ -313,3 +313,46 @@ base margin) — whether it compounds into training gain needs the M0–M3
 ablation. Caveats: a- candidates are constructed (not sampled), but G is a
 within-pair contrast so construction bias is symmetric across conditions;
 the production-pool `evidence_text` rendering of T2 remains untested.
+
+## 12. Exp1-C2: independent-reference replication (2026-11-03, per audit)
+
+Construction per audit: reference rendered from a DIFFERENT successful
+sample of the same case (highest-f1 sibling; scored trajectory never
+participates); wrong-reference control = another case's reference;
+a+/a- both through the same json.dumps; mean AND sum margins;
+per-pair `ref_overlap` flag splits leakage-clean vs correlated-choice
+pairs. 78 pairs / ~17 cases; 9B (on-policy) and 4B (off-policy on 9B
+trajectories — the actual trainee). Reproducible stats:
+`exp1c2/exp1c2_analyze.py` (case-level bootstrap, seed 0).
+
+| model | subset | G_t2_ind | G_t2_wrong | G_t1 |
+|---|---|---|---|---|
+| 9B | ALL (n=78) | +0.0092, CI [−0.008, +0.016], p=0.28 | −0.0022 | −0.0022* |
+| 9B | no-overlap (n=9) | **+0.0041, p<1e-4** | −0.0024** | −0.0019** |
+| 4B | ALL (n=78) | **+0.0171, CI [+0.003, +0.020], p=0.0025, 68% pos** | +0.0021 (n.s.) | −0.0033** |
+| 4B | no-overlap (n=9) | −0.0043 (fragile) | +0.0062 (fragile) | −0.0041 |
+
+Reading (deliberately narrow):
+1. **The effect survives the independent-reference construction at the
+   population level in 4B (significant, case-clustered) and directionally
+   in 9B**, and the wrong-case reference does NOT reproduce it (≈0 or
+   negative) — the shift is case-specific, not generic format priming.
+2. **Explanation A vs B (decision competence vs reference-action matching)
+   is NOT settled**: the leakage-free no-overlap subset is n=9 pairs from
+   ~2–3 cases — both models' subset statistics are directionally unstable
+   (9B positive, 4B negative) and the bootstrap CIs over ≤3 clusters are
+   degenerate. The binding constraint is DATA (36 cases × 3 samples), not
+   compute: a 50-case × 8-sample regeneration would give the no-overlap
+   subset enough mass to settle it.
+3. 4B shows a LARGER effect than 9B (+0.017 vs +0.009) despite off-policy
+   scoring — the trainee may be more reference-responsive than the
+   generator (untested hypothesis, consistent with distillation having
+   something to teach a weaker policy).
+
+Verdict (updated from §11, per the audit wording): refined decision
+references produce a statistically positive, case-specific shift in
+preference toward actions observed as effective, constructed
+independently of the scored trajectory. Whether this reflects transferable
+decision competence rather than reference-action matching requires a
+larger no-overlap sample; whether GKD transfers it to the Student is the
+One-Step Transfer Test (next).
