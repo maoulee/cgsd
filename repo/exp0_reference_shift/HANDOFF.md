@@ -275,3 +275,41 @@ collapses (environment-death forensics stands). The loss<1e-4 skip is a
 control arm only, not a fix. Open: in-situ identity probe inside
 GKDTrainer.compute_loss; before/after-checkpoint × normal/broken-env 2×2
 (OPSD adapters live on the training container, not here).
+
+## 11. Exp1-C: candidate action preference (2026-11-03) — first POSITIVE significant signal
+
+The decisive direction test: does the refined reference shift RELATIVE
+preference toward the environment-validated effective action over same-state
+legal distractors? (`exp1c/exp1c_candidate_margin.py`; 124 EFFECTIVE blocks;
+a- constructed from the SAME retrieve_relations menu at the same state —
+soft = 1 chosen relation swapped, hard = all replaced; post-thinking
+scoring; 9B.)
+
+| metric | value |
+|---|---|
+| base margin (none): s(a+) − s(a−soft) | +0.276 |
+| **G_T2 = [margin|T2] − [margin|none]** (soft) | **+0.0142, CI95 [+0.0052, +0.0240], p=0.0004, 66% of pairs >0** |
+| G_T1 (answer-only, soft) | **−0.0028, CI95 [−0.0043, −0.0014]** — significantly NEGATIVE |
+| G_T2 (hard) | +0.0042 (n.s., base margin already 0.32) |
+| G_T1 (hard) | −0.0045 (significantly negative) |
+
+**Reading**: the refined decision reference significantly strengthens the
+model's preference for its validated effective action over legal
+alternatives — the mechanism premise holds for the REFINED reference, in
+direction. The answer-only reference is neutral-to-harmful for action
+discrimination at every layer measured (exp0 realized logp, exp1a full
+distribution, exp1c relative preference). Combined chain:
+
+| layer | answer-only | refined reference |
+|---|---|---|
+| realized-token shift (exp0) | ≈0 | — |
+| full/top-256 KL (exp1a/ezero) | 0.004 | 0.032 (7.4×) |
+| gradient direction | orthogonal to refined (cos 0.056) | independent |
+| **relative preference G (exp1c)** | **negative** | **positive, significant** |
+
+CGSD's defensible mechanism = refined-DECISION distillation, not
+answer-knowledge injection. Magnitude is modest (~5% enhancement of the
+base margin) — whether it compounds into training gain needs the M0–M3
+ablation. Caveats: a- candidates are constructed (not sampled), but G is a
+within-pair contrast so construction bias is symmetric across conditions;
+the production-pool `evidence_text` rendering of T2 remains untested.
