@@ -522,3 +522,39 @@ Readings (per the audit's quadrant table, plus one pattern beyond it):
    actively destroys it. The two production-relevant fixes (frozen teacher,
    stabilized optimizer) remove the harm and expose the vacancy: the
    decision knowledge does not travel through this loss.
+
+## 17. W-series: single-position learning verification (2026-11-03) — the interference localized to THINKING tokens
+
+Codex's minimal experiment, executed: 8 train-case decision points where
+the premise holds (frozen teacher + refined reference assigns higher
+probability to the correct-relation tokens: q−p = +0.032, 5/8 points).
+One stabilized Adam step per arm, frozen teacher, token-mean, in-situ
+re-scoring of the SAME states. `ustep/wseries_singlepos.py` +
+`ustep/wseries_1step.json`.
+
+| arm | supervision scope | Δp(correct-relation tokens) | positive points |
+|---|---|---|---|
+| premise | — (teacher advantage) | +0.032 | 5/8 |
+| **W1** | decision tokens only (relation names) | **+0.044** | **5/8 — LEARNS, exceeds the teacher gap** |
+| **W2** | whole action JSON | **+0.039** | 4/8 — still learns |
+| **W3** | + thinking (full turn) | **−0.003** | 2/8 — **the signal dies** |
+
+Readings:
+1. **The training function is NOT fundamentally broken**: W1/W2 learn
+   in-situ exactly as OPD math predicts (gradient p−q → p(correct) rises).
+   Nor is the environment involved (fully offline).
+2. **The interference is localized at the W2→W3 boundary: THINKING-token
+   gradients cancel the decision-token learning** within a single turn
+   (decision delta collapses +0.039 → −0.003 even as the overall action
+   span still rises +0.043 on non-decision tokens).
+3. Combined with V-series: a second dilution layer exists across turns
+   (multi-turn action-only never transfers and degrades over steps), but
+   the primary killer within a turn is thinking supervision.
+4. The working recipe (W1) is now fully specified: frozen teacher +
+   stabilized optimizer + token-mean + DECISION-TOKEN-ONLY loss →
+   in-situ learning +0.044. This is the mechanistically-grounded version
+   of "selective distillation" — the selectivity criterion is the
+   relation-choice positions, and it follows directly from the escalation
+   chain, not from crash-avoidance heuristics.
+   Open: whether W1-scope learning generalizes to held-out cases (the
+   C2 A/B question still governs that step).
