@@ -452,3 +452,41 @@ positive preference (C2) does not survive the step; the step itself is
 destructive regardless of what the teacher knows. Next per plan: V-series
 2×2 (loss scope × optimizer stability, e.g. U2 at Z3's warmup lr+clip =
 V1) to test whether the damage can be suppressed while signal survives.
+
+## 15. V-series 2×2 + 5-step probe (2026-11-03): FINAL verdict of the audit arc
+
+V-series (refined reference U2-form; scope × optimizer; paired vs the
+identity floor; 21 held-out pairs / 7 cases):
+
+| group | steps | held-out ΔM | diff vs floor (case CI95) | pos cases |
+|---|---|---|---|---|
+| V0 full + orig lr | 1 | −0.0728 | −0.071 [−0.091,−0.038] | 0/7 |
+| V1 full + prod (warmup+clip) | 1 | **−0.0089** | −0.008 [−0.0088,−0.0051] | 0/7 |
+| V2 action-only + orig | 1 | −0.0540 | −0.053 [−0.066,−0.027] | 0/7 |
+| V3 action-only + prod | 1 | **−0.0069** | −0.006 [−0.0067,−0.0035] | 0/7 |
+| V1 full + prod | 5 | −0.0084 | −0.006 [−0.0120,+0.0052] **CI crosses 0** | 3/7 |
+| V3 action-only + prod | 5 | **−0.0239** | −0.020 [−0.0333,−0.0050] worse | 1/7 |
+
+FINAL READINGS:
+1. **Optimizer stabilization works**: warmup+clip removes ~90% of the
+   one-step damage (V0→V1); with it, 5 steps are STABLE (V1 flat at
+   −0.008, CI crossing zero — no drift accumulation). The historical
+   "training wrecks the policy" phenomenon is reproducible and fixable
+   at the optimizer level.
+2. **Positive transfer is NOT observed under any tested form**: full /
+   action-only × 1 / 5 steps × orig / prod optimizer — best case is
+   neutral (V1), never positive. The teacher's +0.014 reference-
+   conditioned preference does not arrive in the unconditioned policy.
+3. **Action-only is not the fix**: at 1 step it matches full+prod
+   (−0.007 vs −0.009), but at 5 steps it DEGRADES (−0.024, sig.) —
+   concentrating supervision on fewer tokens concentrates the residual
+   flattening damage instead of the signal.
+4. Per the pre-agreed decision rule ("if no arm improves held-out
+   margin, re-evaluate the teacher's training signal rather than tuning
+   lr further"): the remaining explanations are (a) the teacher's
+   preference is reference-matching rather than transferable decision
+   competence (the unsettled A/B question, now the leading hypothesis),
+   or (b) per-token GKD is the wrong vehicle for decision-level signal
+   regardless of scope (→ contrastive/advantage forms, GRPO/RSCC track).
+   Multi-step accumulation shows flat, not rising — (c) "just needs more
+   steps" is not supported.

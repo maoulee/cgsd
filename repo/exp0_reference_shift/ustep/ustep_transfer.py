@@ -82,7 +82,14 @@ def walk(tok, system_base, tr, row, suffix="", cache_key=None):
                                     add_generation_prompt=False)
         ids = tok(t, add_special_tokens=False).input_ids
         if m.get("role") == "assistant":
-            spans.append((n_prev, len(ids)))
+            thought = (m.get("reasoning") or "").strip()
+            think_only = (f"<think>\n{thought}\n</think>\n\n"
+                          if thought else " ")
+            m2 = msgs[:-1] + [{"role": "assistant", "content": think_only}]
+            t2 = tok.apply_chat_template(m2, tokenize=False,
+                                         add_generation_prompt=False)
+            mid = len(tok(t2, add_special_tokens=False).input_ids)
+            spans.append((n_prev, mid, len(ids)))
         n_prev = len(ids)
     if cache_key:
         WALK_CACHE[cache_key] = (ids, spans)
@@ -94,6 +101,7 @@ def main():
     ap.add_argument("--model", default="models/Qwen3.5-4B")
     ap.add_argument("--gpu", type=int, default=0)
     ap.add_argument("--cap", type=int, default=2, help="train seqs per case")
+    ap.add_argument("--steps", type=int, default=1, help="optimizer steps")
     ap.add_argument("--out", default="reports/ustep_transfer.json")
     args = ap.parse_args()
 
@@ -146,8 +154,12 @@ def main():
     adapter0 = {k: v.detach().clone() for k, v in pm.state_dict().items()
                 if "lora_" in k}
 
-    def span_preds(spans):
-        return sorted({p for lo, hi in spans for p in range(lo - 1, hi - 1)})
+    def span_preds(spans, scope="full"):
+        if scope == "action":      # exclude thinking tokens of each turn
+            return sorted({p for lo, mid, hi in spans
+                           for p in range(mid - 1, hi - 1)})
+        return sorted({p for lo, mid, hi in spans
+                       for p in range(lo - 1, hi - 1)})
 
     def fwd_span(ids, preds, grad):
         ids_t = torch.tensor([ids], device=pm.device)
@@ -288,59 +300,66 @@ def main():
     results = []
     conds = os.environ.get("USTEP_CONDS",
             "Z0_nostep,Z1_zerograd,Z2_idmean,Z3_id_prod").split(",")
+    SCOPE_OF = {"V2_act_orig": "action", "V3_act_prod": "action"}
+    SUFMAP = {"V1_full_prod": "U2_refined", "V2_act_orig": "U2_refined",
+              "V3_act_prod": "U2_refined"}
+    PROD_OPT = {"Z3_id_prod", "V1_full_prod", "V3_act_prod"}
     for cond in conds:
         for k in adapter0:
             pm.state_dict()[k].copy_(adapter0[k])
         pm.zero_grad(set_to_none=True)
         pm.train()
-        eff_lr = LR * (1.0 / 5.0) if cond in ("Z3_id_prod",) else LR
+        eff_lr = LR * (1.0 / 5.0) if cond in PROD_OPT else LR
         opt = torch.optim.AdamW(
             [{"params": [p_ for n_, p_ in pm.named_parameters()
                          if "lora_A" in n_], "lr": eff_lr},
              {"params": [p_ for n_, p_ in pm.named_parameters()
                          if "lora_B" in n_], "lr": eff_lr * LORA_PLUS}],
             lr=eff_lr, weight_decay=0.0, eps=1e-8)
+        scope = SCOPE_OF.get(cond, "full")
         # N = total supervised tokens over ALL train seqs (token-mean, the
         # production loss normalization) — fixed per audit 2026-11-03
-        all_preds = [span_preds(sq["spans"]) for sq in train_seqs]
+        all_preds = [span_preds(sq["spans"], scope) for sq in train_seqs]
         N = sum(len(p) for p in all_preds)
-        tot_kl, tot_n = 0.0, 0
-        for seq, preds in zip(train_seqs, all_preds):
+        for step_i in range(args.steps):
+          if cond in PROD_OPT:   # linear warmup over steps (5-step schedule)
+            for gi, g in enumerate(opt.param_groups):
+                base = LR if gi == 0 else LR * LORA_PLUS
+                g["lr"] = base * min(1.0, (step_i + 1) / 5.0)
+          opt.zero_grad(set_to_none=True)
+          tot_kl, tot_n = 0.0, 0
+          for seq, preds in zip(train_seqs, all_preds):
             if cond in ("Z0_nostep", "Z1_zerograd"):
                 break                       # controls: no backward at all
             s_logits = fwd_span(seq["ids"], preds, grad=True)
             if cond in ("U0_identity", "Z2_idmean", "Z3_id_prod"):
                 t_logits = s_logits.detach()
             else:
-                t_ids2, t_spans2 = seq["t_views"][cond]
-                t_logits = fwd_span(t_ids2, span_preds(t_spans2), grad=False)
+                t_ids2, t_spans2 = seq["t_views"][SUFMAP.get(cond, cond)]
+                t_logits = fwd_span(t_ids2, span_preds(t_spans2, scope),
+                                    grad=False)
             kl = kl_top256(s_logits, t_logits)
             (kl.sum() / N).backward()       # token-mean (production form)
             tot_kl += float(kl.sum()); tot_n += int(kl.shape[1])
             del s_logits, t_logits
-        if cond == "Z1_zerograd":
+          if cond == "Z1_zerograd":
             for p_ in pm.parameters():
                 p_.grad = None
             pm.zero_grad(set_to_none=True)
-        grads = [p_.grad for _, p_ in pm.named_parameters()
-                 if p_.grad is not None]
-        gnorm = float(torch.linalg.vector_norm(torch.stack(
-            [torch.linalg.vector_norm(g.float()) for g in grads]))) if grads else 0.0
-        if grads:
+          grads = [p_.grad for _, p_ in pm.named_parameters()
+                   if p_.grad is not None]
+          gnorm = float(torch.linalg.vector_norm(torch.stack(
+              [torch.linalg.vector_norm(g.float()) for g in grads]))) if grads else 0.0
+          if grads:
             absf = torch.cat([g.abs().float().flatten() for g in grads])
-            q = torch.quantile(absf, torch.tensor([0.5, 0.9],
-                                  device=absf.device)) \
-                if absf.numel() < 10_000_000 else None
-            gq = {"p50": float(absf.median()),
-                  "p90": float(q[1]) if q is not None else None,
-                  "max": float(absf.max()),
+            gq = {"p50": float(absf.median()), "max": float(absf.max()),
                   "frac_gt_eps": float((absf > 1e-8).float().mean())}
-        else:
+          else:
             gq = {}
-        if cond == "Z3_id_prod":
+          if cond in PROD_OPT:
             torch.nn.utils.clip_grad_norm_(
                 [p_ for p_ in pm.parameters() if p_.grad is not None], 1.0)
-        if cond != "Z0_nostep":
+          if cond != "Z0_nostep":
             opt.step()
         pm.eval()
         # held-out eval (bare, adapter ON)
@@ -354,7 +373,7 @@ def main():
             dan.append(s["a_neg"] - b["a_neg"])
         rec = {"condition": cond, "train_kl_tokmean": tot_kl / max(tot_n, 1),
                "grad_norm": gnorm, "grad_quantiles": gq,
-               "n_heldout": len(dm),
+               "steps": args.steps, "n_heldout": len(dm),
                "dM_transfer_mean": st.mean(dm) if dm else None,
                "d_logp_apos": st.mean(dap) if dap else None,
                "d_logp_aneg": st.mean(dan) if dan else None,
