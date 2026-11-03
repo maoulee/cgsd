@@ -238,3 +238,40 @@ candidates worth testing before any long run: (a) skip steps with
 loss < floor (1e-4) — kills the pure-noise step; (b) compute the identity
 teacher from the SAME forward (detach) instead of a second pass;
 (c) larger Adam ε or unnormalized scaling for distillation params.
+
+## 10. E-Zero strict matrix (2026-11-03) — T0 smoking gun RETRACTED as harness artifact
+
+The 2026-11-03 audit found the first E-Zero computed the loss softmax in
+BF16 while the real chunked GKD uses `.float()`, and supervised unshifted
+positions. Strict rerun (`ezero/ezero_strict.py`; FP32, shifted labels
+[lo−1,hi−1), token-mean, teacher adapter ON for T1/T2):
+
+| condition | KL_top256 (tok-mean) | grad_norm | note |
+|---|---|---|---|
+| I0 same-forward detach | 0.00000000 | **3.7e-03** | math control, fp32 roundoff floor |
+| I1 two forwards | 0.00000000 | 3.7e-03 | dual-forward adds nothing |
+| I2 teacher adapter off | 0.00000000 | 3.7e-03 | adapter path adds nothing |
+| **I3 BF16 (old harness)** | 0.00000000 | **7.74** | the §9 T0 anomaly, reproduced |
+| T1 answer-only | 0.00430 | 1.34e3 | survives all fixes |
+| T2 refined reference | 0.03202 | 2.97e3 | survives all fixes |
+
+Verdict per the audit's decision rule: **I0–I2 clean, I3 anomalous ⇒ the §9
+T0 result was a BF16-softmax backward-rounding artifact of OUR harness, not
+a property of the production loss.** The production FP32 path's identity
+gradient floor is ~3.7e-3 — six orders below the T2 signal. §9's
+"KL≈0 ⇒ full-size Adam update" claim is retracted for the real stack.
+
+Gradient-direction cosines (new): I0/I1/I2 ≡ 1.0 (roundoff is common-mode);
+I3 vs anything ≈ 0.13 (random direction — the artifact is uncorrelated
+noise); **T1 vs T2 = 0.056 — the answer-only and refined-reference signals
+are nearly orthogonal gradient directions**, i.e. the OPSD reference is not
+"the answer, stronger" but a qualitatively different signal.
+
+Status per the audit's three layers: VERIFIED — T2 carries a real, 7.4×,
+reproducible distribution/gradient signal (this form; `evidence_text` from
+the production pool still untested); NOT VERIFIED — whether in-situ GKD
+steps show the same; NOT ESTABLISHED — any causal link to the historical
+collapses (environment-death forensics stands). The loss<1e-4 skip is a
+control arm only, not a fix. Open: in-situ identity probe inside
+GKDTrainer.compute_loss; before/after-checkpoint × normal/broken-env 2×2
+(OPSD adapters live on the training container, not here).
