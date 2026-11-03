@@ -198,3 +198,43 @@ mechanism hypothesis) and Exp1-C (candidate preference G). Files:
 `exp1a/dist_audit_{9b,4b}.jsonl` (row schema adds kl_full/kl_top256 means
 and sums, mass256 both sides, top1_change_rate, entropy_delta, recomputed
 logp_shift, per span).
+
+## 9. E-Zero identity test result (2026-11-03)
+
+Real training loss form (chunked top-256 FKL, beta=0, T=1.0, LoRA r64/α128,
+lora_plus×4, AdamW lr 2e-5, one step), 5 distinct-case r9a trajectories,
+4B, loss on all assistant spans. `ezero/ezero_identity_test.py`.
+
+| condition | teacher input | KL_top256 | KL_full | grad_norm | ‖Δθ‖ after 1 step | probe drift |
+|---|---|---|---|---|---|---|
+| T0 identity | = student | **0.000000** | 0.000000 | **7.74** | **0.6807** | −0.027 |
+| T1 answer-only | +Verified answer | 0.004308 | 0.004321 | 1.34e3 | 0.6809 | −0.140 |
+| T2 refined (real OPSD form) | +wrap_structured(render_fact_grouped) | **0.032040** | 0.032089 | 2.97e3 | 0.6809 | −0.089 |
+
+Three findings:
+
+1. **The identity test FAILS at the update level.** KL is exactly 0.000000
+   (second-order in the distribution diff), yet grad_norm = 7.74 (FIRST-order
+   p−q): bf16 numerical noise between the two forward paths (student:
+   grad+checkpointing+adapter wrapper; teacher: no_grad+disable_adapter)
+   yields a nonzero gradient from a zero-valued loss. One Adam step then
+   moves LoRA params by 0.68 with measurable policy drift. **KL≈0 does not
+   imply Δθ≈0 under Adam.**
+2. **Update size is condition-independent** (0.6807 / 0.6809 / 0.6809):
+   Adam's per-parameter sign-like normalization decouples ‖Δθ‖ from signal
+   strength. In parameters the signal does not reach, numerical-noise
+   gradients still take full-size ±lr·(lora_plus) steps — a per-step
+   diffusion channel that iterates over hundreds of steps.
+3. **The real OPSD reference DOES carry signal**: T2 KL = 0.032 = **7.4×**
+   the answer-only injection (0.0043) — Exp0's answer-only null does NOT
+   transfer to the actual teacher condition (audit hypothesis #1 confirmed).
+   And KL_full ≈ KL_top256 in all conditions (truncation blind spot empty —
+   hypothesis #3 excluded, consistent with teacher top-256 mass = 1.000).
+
+Caveat: this harness replicates the loss form and optimizer setup, not the
+literal swift GKDTrainer path — the real stack should log grad_norm /
+update-norm per step and run an identity-batch probe in-situ. Mitigation
+candidates worth testing before any long run: (a) skip steps with
+loss < floor (1e-4) — kills the pure-noise step; (b) compute the identity
+teacher from the SAME forward (detach) instead of a second pass;
+(c) larger Adam ε or unnormalized scaling for distillation params.
