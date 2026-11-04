@@ -750,3 +750,36 @@ Practical: hard action-mask and λ≈0.25-weighted full-turn supervision are
 near-equivalent in-situ; the latter keeps thinking supervision (which
 trains thinking-style without harming decisions at low weight).
 In-situ only — held-out transfer remains the open question.
+
+## 23. S-series: selective GKD → held-out decision improvement (2026-11-04) — NEGATIVE at current data scale, with a monotonic dose-response
+
+Case-isolated split (10 train / 7 held-out cases; 28 aligned train pairs /
+21 held-out eval pairs; frozen teacher, warmup+clip, strict masks, 3
+steps; eval = bare correct-vs-wrong relation margin on held-out cases,
+per-pair persisted, case bootstrap). `ustep/s_series.{py,json}`.
+
+| condition | held-out ΔM | pos pairs | case-equal [CI95] |
+|---|---|---|---|
+| I (no update) | **0.00000** ✓ | 0/21 | — |
+| F (current-turn full) | −0.0135 | 9/21 | [−0.026, +0.007] crosses 0 |
+| A+0.25T | −0.0273 | 3/21 | [−0.040, −0.005] sig neg |
+| **A (action-only)** | **−0.0437** | **0/21** | **[−0.051, −0.030] sig neg |
+
+THE IN-SITU / HELD-OUT INVERSION: the supervision ordering that was BEST
+in-situ (A > A+0.25T > F, W4b) is WORST held-out (A < A+0.25T < F < I) —
+a clean monotonic dose-response in the WRONG direction. At 10 train
+cases / 28 pairs, concentrating supervision on action tokens MEMORIZES
+the training relations and damages held-out decision margins; the dilute
+full-turn version damages least; nothing improves held-out.
+
+Reading per the audit's framing: the boxed question
+"Selective GKD → Held-out Decision Improvement?" is answered NO at this
+data scale. Combined with the frozen/synced and W4b results, the complete
+picture is: (a) the learner can absorb local supervision in-situ; (b)
+supervision weighting controls the update direction; (c) dynamic teachers
+amplify degradation; (d) **at current scale the transferred content
+behaves as memorization, not decision knowledge** — consistent with the
+A/B "reference-matching" hypothesis. The gating factor is data scale and
+diversity, exactly as planned: the 128-concurrency expansion (50+ cases ×
+8 samples, diverse success paths, environment-validated negatives) is now
+the decisive next step, after which this same harness reruns unchanged.
