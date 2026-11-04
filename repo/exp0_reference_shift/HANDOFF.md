@@ -667,3 +667,45 @@ W1-raw +0.017 as observation. Next: W4 strict-token-alignment rerun
 (R/A/T/A+T arms on the CURRENT TURN only, decoded-span assertions,
 teacher/student target-id equality checks, gradient cosine g_R vs g_T,
 in-situ + held-out readouts) BEFORE any scale-up.
+
+## 21. W4: strict token alignment + current-turn arms (2026-11-04) — thinking interference CONFIRMED under the corrected apparatus
+
+Apparatus fixes per audit §20: char-anchor boundary location on the full
+decode (byte-level BPE per-token decodes concatenate exactly); DECODE
+assertions on every supervised span (thinking / action / relations values);
+teacher-student target-id equality at aligned positions; production-shape
+history (<think>{reasoning}</think> + RAW incl. AUDIT block — the stored
+`raw` is the POST-THINKING output); causal shift applied once, correctly;
+Δ metrics same-scope post-minus-pre. **12/12 pairs aligned, 0 skips, all
+assertions pass.** `ustep/w4_strict.{py,json}`.
+
+| arm (current turn only) | Δ relations values | Δ action | Δ thinking |
+|---|---|---|---|
+| R (relations values only) | **+0.0076** (4/12) | +0.0008 | +0.0004 |
+| A (whole flat action) | **+0.0077** (4/12) | +0.0014 | −0.0006 |
+| T (thinking only) | **−0.0031** | −0.0008 | +0.0040 |
+| A+T (thinking + action) | **+0.0002** | +0.0003 | +0.0046 |
+| **cos(g_R, g_T)** | **+0.0089 — orthogonal** | | |
+
+Readings (per the audit's three decisive patterns — pattern 1 observed):
+1. **R learns (+0.008), A+T does not (+0.0002): the thinking-interference
+   hypothesis is CONFIRMED under strict alignment.** The old W3's whole-
+   context bug did not create the phenomenon; it overstated its scope.
+2. **Mechanism refined to ORTHOGONAL-DIRECTION DILUTION, not opposition**:
+   cos(g_R, g_T) ≈ 0.009. Under token-mean normalization, thinking's
+   ~200–1000 tokens dominate the combined step's direction; the projection
+   onto the relations-useful direction shrinks accordingly (and the T-arm
+   alone slightly LOWERS relations: −0.003). Thinking supervision
+   successfully trains thinking-style (+0.0046 on itself) — orthogonal-to-
+   mildly-harmful for decisions.
+3. **Action-scope supervision is NOT harmful**: A ≈ R on relations
+   (+0.0077 vs +0.0076) — scaffolding tokens neither help nor interfere.
+   The minimal mask is therefore "current-turn ACTION tokens, exclude
+   thinking"; relations-only remains the most compute-efficient but is not
+   uniquely effective in-situ.
+4. Magnitudes are the honest strict-alignment numbers (earlier +0.017
+   included the off-by-one and mixed-format prefix). Limitations: n=12
+   pairs / ~10 cases (4/12 individually positive — mean positive, wide
+   CI); per-pair deltas not persisted in this run (fix next); held-out
+   transfer (pattern 3) remains untested — that is the data-expansion
+   question, unchanged.
