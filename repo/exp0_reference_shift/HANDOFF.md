@@ -611,3 +611,25 @@ Readings:
 4. Data-driven supervision mask: **relations values (primary, +0.023) +
    optionally answer_values (weak, echo) — exclude plan, retrieve_relations,
    thinking, and scaffolding**.
+
+## 19. Answer-layer decomposition (2026-11-04): no supervision needed — student ceiling
+
+Final accepted answer turns (f1>0 trajectories, n=28, sibling refined
+reference, raw flat format, 4B; `ustep/answer_decomp.json`):
+
+| quantity | value |
+|---|---|
+| q−p on answer_values tokens | **+0.00002 (14/28 — coin flip)** |
+| q−p on whole answer action (incl. scaffolding) | +0.0004 |
+| **student baseline p(own correct answer values)** | **logp −0.015/token ≈ p 0.985 — CEILING** |
+
+Reading: on successful trajectories the student already produces its
+correct answer tokens with near-certainty given its own evidence — there
+is no headroom for the teacher to raise and nothing to teach. This also
+reconciles the earlier exp0 +0.006 "answer echo": that was measured under
+DIRECT answer injection (the GT string copied into the prompt) across all
+answer turns; as TRAINING supervision on successful trajectories the
+answer layer contributes ≈ zero gradient. **The supervision mask
+finalizes to: relations values ONLY.** Excluded: plan (negative −0.047),
+retrieve_relations (zero), answer_values (zero, ceiling), thinking
+(cancels), scaffolding (dilutes).
