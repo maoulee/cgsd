@@ -633,3 +633,37 @@ answer layer contributes ≈ zero gradient. **The supervision mask
 finalizes to: relations values ONLY.** Excluded: plan (negative −0.047),
 retrieve_relations (zero), answer_values (zero, ceiling), thinking
 (cancels), scaffolding (dilutes).
+
+
+## 20. AUDIT RETRACTIONS (2026-11-04) — §17–§19 conclusions pending strict re-verification
+
+Three P0 issues found in the audit of c9da2d8/3aa76c5/0383c3c:
+1. **W3's scope was the ENTIRE sequence** (range(0, act_hi) when thinking
+   present) — system/user/history/observations included, NOT "current-turn
+   thinking+action". The "thinking causes 95% loss" CAUSAL claim is
+   RETRACTED; W3 only showed that the (erroneous) whole-context mask kills
+   the gain — consistent with V-series full supervision, but not an
+   isolated thinking test.
+2. **Off-by-one**: training used target positions as predictor positions
+   (scoring correctly used [lo-1, hi-1)). W1's +0.017 stands as an
+   observation but not as "exact relations-token distillation". Also
+   `d_act_mean` mixed post-action with pre-decision metrics (retracted
+   number). And history turns were rendered with JSON actions while the
+   current turn used raw flat text (mixed-format prefix, another fidelity
+   gap: production history = <think>…</think> + RAW action).
+3. **Statistical reinterpretation**: tool-layer Δℓ is the teacher-vs-student
+   likelihood of the STUDENT'S OWN action — not decision advantage.
+   E_{a~p}[log q−log p] = −KL(p‖q) ≤ 0 makes negative gaps natural.
+   "plan has negative value, never distill" RETRACTED → "the reference
+   lowers likelihood of the student's original plan text; plan distillation
+   value unverified". Answer "98.5% ceiling" narrowed: it is the geometric
+   mean per-token conditional probability on success trajectories (a
+   10-token answer ≈ 0.86 joint), not P(answer correct) — supports
+   excluding answer from FIRST-round supervision, not forever.
+
+Retained: refined reference changes relation-choice distributions (C2/
+E-Zero); synced-teacher degradation (dual-arm, independent of W3);
+W1-raw +0.017 as observation. Next: W4 strict-token-alignment rerun
+(R/A/T/A+T arms on the CURRENT TURN only, decoded-span assertions,
+teacher/student target-id equality checks, gradient cosine g_R vs g_T,
+in-situ + held-out readouts) BEFORE any scale-up.
