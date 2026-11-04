@@ -583,3 +583,31 @@ NOTE: the JSON magnitudes were inflated (out-of-distribution serialization
 are the production-fidelity effect sizes** and should be the cited ones.
 Production implementation of selective distillation supervises the
 `relations:` line values in the flat protocol.
+
+## 18. Per-tool-layer teacher advantage (2026-11-04): the supervision mask is NOT the whole tool layer
+
+q−p on ACTION tokens per tool type (raw flat protocol, 4B, 170 turns,
+sibling refined reference; `ustep/tool_layer_advantage.{py,json}`):
+
+| tool | n | q−p (whole action) | pos% |
+|---|---|---|---|
+| retrieve_subgraph | 63 | +0.0021 | 52% |
+| retrieve_relations | 48 | −0.0004 | 56% |
+| answer | 30 | **+0.0049** | 57% |
+| **plan** | 29 | **−0.0468** | **34%** |
+
+Readings:
+1. **plan turns carry NEGATIVE teacher advantage** (−0.047, only 34%
+   positive): the reference restates a decomposition, and the teacher's
+   plan output moves AWAY from the student's original (successful-trajectory)
+   plan. Supervising plan turns would pull the student toward
+   reference-style plan text — a distribution shift, not a decision gain.
+   This also retro-explains part of V-series action-only failure (its
+   scope included plan).
+2. retrieve_subgraph's whole-action average (+0.002) is the relations
+   sub-field (+0.023, W-series) diluted by scaffolding tokens.
+3. answer is mildly positive (+0.005) — largely answer-echo (exp0), the
+   correctness materialization point; optional weak supervision.
+4. Data-driven supervision mask: **relations values (primary, +0.023) +
+   optionally answer_values (weak, echo) — exclude plan, retrieve_relations,
+   thinking, and scaffolding**.
