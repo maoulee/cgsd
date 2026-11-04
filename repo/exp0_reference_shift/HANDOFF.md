@@ -709,3 +709,44 @@ Readings (per the audit's three decisive patterns — pattern 1 observed):
    CI); per-pair deltas not persisted in this run (fix next); held-out
    transfer (pattern 3) remains untested — that is the data-expansion
    question, unchanged.
+
+## 22. W4b: region-split + λ-dose (2026-11-04) — interference fully decomposed
+
+Disjoint-union masks (A=action 498 tok / T=thinking 3126 / U=AUDIT 1022 /
+R=relations 158); per-region-normalized λ-dose L=L_A/N_A+λ·L_T/N_T;
+per-arm gradient norm, cos(g_arm, g_R), cos(Adam-update, g_R) (negative =
+aligned with R's DESCENT direction); per-pair ΔR persisted with case ids.
+12/12 aligned, 0 skips (assertions now cover the AUDIT region too).
+`ustep/w4b.{py,json}`.
+
+| arm | ΔR | cos(g,g_R) | cos(Δθ,g_R) |
+|---|---|---|---|
+| A | **+0.0078** (4/12) | +0.995 | −0.492 |
+| T | −0.0033 | +0.010 | −0.014 |
+| U (AUDIT) | +0.0005 | +0.017 | −0.009 |
+| A∪T (joint token-mean; T=86% mass) | +0.0010 | +0.094 | −0.061 |
+| A∪U | +0.0045 | +0.207 | −0.123 |
+| A∪T∪U | +0.0003 | +0.085 | −0.056 |
+| λ=0.25 | **+0.0071** (5/12) | +0.901 | −0.444 |
+| λ=0.5 | +0.0064 | +0.727 | −0.366 |
+| λ=1.0 | +0.0045 | +0.473 | −0.253 |
+
+Findings:
+1. **THINKING is the dominant interferer; AUDIT is minor**: A∪T kills
+   (+0.001) while A∪U halves (+0.0045); A∪T∪U = the W4 AT phenomenon
+   reproduced by union mask (+0.0003).
+2. **The kill mechanism is TOKEN-MASS DILUTION, not mere presence**: with
+   per-region normalization at λ=1 (thinking direction weighted 50/50),
+   ΔR retains +0.0045; at joint token-mean (T=86% of the mass) it dies.
+   λ=0.25 ≈ action-only (+0.0071 vs +0.0078).
+3. **cos(g_A, g_R)=+0.995**: scaffolding gradients are direction-identical
+   to relations gradients — A≈R explained.
+4. **Adam rotation quantified and PREDICTIVE**: A-arm cos(Δθ,g_R)=−0.49
+   (ideal SGD −1; preconditioning rotates ~60° off descent but keeps a
+   positive descent projection). Across λ arms, cos(Δθ) tracks ΔR
+   monotonically (−0.44/−0.37/−0.25 → +0.0071/+0.0064/+0.0045): the
+   update-direction alignment predicts in-situ learning.
+Practical: hard action-mask and λ≈0.25-weighted full-turn supervision are
+near-equivalent in-situ; the latter keeps thinking supervision (which
+trains thinking-style without harming decisions at low weight).
+In-situ only — held-out transfer remains the open question.
