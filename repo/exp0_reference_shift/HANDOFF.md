@@ -783,3 +783,38 @@ A/B "reference-matching" hypothesis. The gating factor is data scale and
 diversity, exactly as planned: the 128-concurrency expansion (50+ cases ×
 8 samples, diverse success paths, environment-validated negatives) is now
 the decisive next step, after which this same harness reruns unchanged.
+
+## 24. S2: score-fixed + true-token-mean (2026-11-04) — the STRATEGY-DRIFT hypothesis wins over memorization
+
+All audit fixes: TRUE F_token_mean (single N over all region tokens);
+candidates swap ONLY the relations VALUES in the real full_text (AUDIT
+preserved, char-anchor per render, asserted); per-candidate ΔlogP
+decomposition; ‖Δθ‖ recorded. Same 10/7 case split, 28 train pairs /
+21 eval pairs, 3 steps, frozen teacher. `ustep/s2.{py,json}`.
+
+| condition | ΔM_rel | ΔlogP(a+) | ΔlogP(a−) | ‖Δθ‖ |
+|---|---|---|---|---|
+| I (no update) | 0.00000 ✓ | 0.000 | 0.000 | 0.000 |
+| F_token_mean | −0.045 | +0.001 | **+0.046** | 0.517 |
+| F_region_equal | −0.055 | +0.002 | **+0.057** | 0.508 |
+| A (action-only) | **−0.091** | +0.002 | **+0.093** | 0.415 |
+| A+0.25T | **−0.108** | +0.001 | **+0.109** | 0.474 |
+
+**MECHANISM DECOMPOSITION (the decisive column is ΔlogP(a−))**: the
+correct-relation probability is essentially UNCHANGED (+0.001..+0.002 in
+every arm) — there is no memorization of training relations. What drives
+the margin collapse is that the CONSTRUCTED ALTERNATIVE relations get
+HIGHER probability (+0.046..+0.109) after every update. The update makes
+the model MORE willing to consider alternative relations on held-out
+states — a distribution-flattening / exploration shift, not memorization.
+
+Per the audit's A-vs-B framing: **hypothesis B (strategy drift) is
+supported over hypothesis A (reference matching / memorization)**. The
+ordering also shifted: A+0.25T is now the WORST (−0.108) rather than
+middle, and F_token_mean is the least-damaging real update (−0.045,
+CI crossing zero). The S-series "selectivity → damage" gradient did not
+survive the scoring fix at this scale.
+
+Open: whether this a− uplift is harmful (the alternatives were never
+environment-validated) or an unexploited positive (wider exploration).
+Both readings require the expanded dataset with validated negatives.
