@@ -1,0 +1,33 @@
+{
+ "n_points": 16,
+ "gradient_norms": {
+  "full_kl": 1.398797869682312,
+  "top256_kl": 1.3987548351287842,
+  "decision": 10.951966285705566,
+  "rl": 1.4858479499816895
+ },
+ "pairwise_cosines": {
+  "cos(full_kl,top256_kl)": 0.9999,
+  "cos(full_kl,decision)": 0.1237,
+  "cos(full_kl,rl)": -0.0549,
+  "cos(top256_kl,decision)": 0.1235,
+  "cos(top256_kl,rl)": -0.054,
+  "cos(decision,rl)": 0.3824
+ },
+ "adam_update_cosines": {
+  "cos(\u0394\u03b8_full_kl, g_decision)": -0.0684,
+  "cos(\u0394\u03b8_full_kl, g_rl)": -0.0001,
+  "cos(\u0394\u03b8_top256_kl, g_decision)": -0.0683,
+  "cos(\u0394\u03b8_top256_kl, g_rl)": -0.0012,
+  "cos(\u0394\u03b8_decision, g_decision)": -0.485,
+  "cos(\u0394\u03b8_decision, g_rl)": -0.1533,
+  "cos(\u0394\u03b8_rl, g_decision)": -0.1548,
+  "cos(\u0394\u03b8_rl, g_rl)": -0.4646
+ },
+ "region_kl": {
+  "thinking_mean": 0.04051439640170429,
+  "thinking_n": 16,
+  "action_mean": 0.03267102924291976,
+  "action_n": 16
+ }
+}

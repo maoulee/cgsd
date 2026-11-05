@@ -818,3 +818,19 @@ survive the scoring fix at this scale.
 Open: whether this a− uplift is harmful (the alternatives were never
 environment-validated) or an unexploited positive (wider exploration).
 Both readings require the expanded dataset with validated negatives.
+
+## 25. On-policy experiment series (2026-11-05) — transition to real training
+
+Per Codex audit: static G-series confirmed mechanism but lacks on-policy
+feedback loop. Next experiments use start_train.sh with:
+- SEQ_PROMPT=RC4 (NOT default RC2)
+- KGQA_TEACHER_SAME_WEIGHTS=0/1 for frozen/synced
+- OPSD_STEPS=10, MAX_NUM_SEQS=128
+- Dual GPU TP=2
+
+Conditions: O0 (no update) | O1 (frozen) | O2 (synced)
+Record: per-step rollout F1 + held-out F1 + failure patterns
+
+Gradient audit finding: cos(g_KD, g_RL) = −0.055 — GKD gradient is
+ANTI-CORRELATED with environment reward. This is the mathematical root
+cause of CGSD's transfer failure.

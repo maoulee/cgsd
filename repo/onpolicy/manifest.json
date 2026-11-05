@@ -1,0 +1,24 @@
+{
+  "commit": "HEAD",
+  "model": "Qwen3.5-4B (base, no LoRA)",
+  "prompt": "RC4 (sha256=832080851410c06e...)",
+  "dataset": "CWQ test split (50 cases, 8 samples each)",
+  "rollout_file": "reports/rc4_rollout_50x8.json",
+  "split": {
+    "train_cases": 30,
+    "heldout_cases": 20,
+    "split_method": "sorted by case_id, 60/40"
+  },
+  "seed": 0,
+  "config": {
+    "lora_rank": 64,
+    "lora_alpha": 128,
+    "lora_plus": 4,
+    "lr": 2e-5,
+    "warmup_steps": 5,
+    "clip_norm": 1.0,
+    "topk": 256,
+    "temperature": 1.0,
+    "steps": 10
+  }
+}
